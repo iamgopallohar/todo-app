@@ -1,0 +1,7 @@
+:root {
+  color-scheme: dark;
+  --bg-primary: hsl(235, 10%, 20%);
+  --bg-secondary: hsl(220, 5%, 10%);
+  --text-primary: hsl(240, 15%, 95%);
+  --text-secondary: hsl(215, 15%, 85%);
+}
