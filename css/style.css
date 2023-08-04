@@ -18,3 +18,8 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
 }
+
+main {
+  height: 100svh;
+  display: flex;
+}
