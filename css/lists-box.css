@@ -36,7 +36,7 @@
   white-space: nowrap;
   overflow: hidden;
   position: relative;
-  outline: transparent;
+  outline-color: transparent;
   border: 1px solid transparent;
 }
 
@@ -99,7 +99,7 @@
 .list-input,
 .add-list-button {
   background-color: transparent;
-  outline: transparent;
+  outline-color: transparent;
   font-size: inherit;
   font-family: inherit;
   color: inherit;
