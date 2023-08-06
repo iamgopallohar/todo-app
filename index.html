@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/lists-box.css" />
     <link rel="stylesheet" href="css/todos-box.css" />
+    <!-- js -->
+    <script src="js/script.js" defer></script>
     <!-- google-fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,58 +25,7 @@
         <div class="lists-heading">
           <h1>Todos Lists</h1>
         </div>
-        <ol class="lists-wrapper">
-          <li class="list" tabindex="0">
-            content Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Minima, fuga placeat. Maiores ullam dignissimos repudianda
-          </li>
-          <li class="list" tabindex="0">
-            ipsum, dolor sit amet consessimos repudianda
-          </li>
-          <li class="list active-list" tabindex="0">
-            Minima, fuga placeat. Maiores
-          </li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-          <li class="list" tabindex="0">
-            content Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Minima, fuga placeat. Maiores ullam dignissimos repudianda
-          </li>
-          <li class="list" tabindex="0">
-            ipsum, dolor sit amet consessimos repudianda
-          </li>
-          <li class="list" tabindex="0">Minima, fuga placeat. Maiores</li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-          <li class="list" tabindex="0">
-            content Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Minima, fuga placeat. Maiores ullam dignissimos repudianda
-          </li>
-          <li class="list" tabindex="0">
-            ipsum, dolor sit amet consessimos repudianda
-          </li>
-          <li class="list" tabindex="0">Minima, fuga placeat. Maiores</li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-          <li class="list" tabindex="0">
-            content Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Minima, fuga placeat. Maiores ullam dignissimos repudianda
-          </li>
-          <li class="list" tabindex="0">
-            ipsum, dolor sit amet consessimos repudianda
-          </li>
-          <li class="list" tabindex="0">Minima, fuga placeat. Maiores</li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-          <li class="list" tabindex="0">
-            content Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Minima, fuga placeat. Maiores ullam dignissimos repudianda
-          </li>
-          <li class="list" tabindex="0">
-            ipsum, dolor sit amet consessimos repudianda
-          </li>
-          <li class="list" tabindex="0">Minima, fuga placeat. Maiores</li>
-          <li class="list" tabindex="0">ullam dignissimos repudianda</li>
-        </ol>
+        <ol class="lists-wrapper" data-lists-wrapper></ol>
         <div class="list-form-wrapper">
           <form action="" class="list-form">
             <input
@@ -95,51 +46,7 @@
           <span class="remaining-tasks">10 tasks remaining</span>
           <span class="done-tasks">10 tasks remaining</span>
         </div>
-        <ol class="todos-wrapper">
-          <li class="todo" data-done="false">
-            <button class="todo-checkbox"></button>
-            <div class="todo-content" contenteditable="false">Todo</div>
-            <div class="todo-action-button-wrapper">
-              <button class="edit-todo-button">
-                <svg
-                  class="edit-todo-icon todo-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="32"
-                  viewBox="0 -960 960 960"
-                  width="32"
-                >
-                  <path
-                    d="M794-666 666-794l42-42q17-17 42.5-16.5T793-835l43 43q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Z"
-                  />
-                </svg>
-                <svg
-                  class="save-todo-icon todo-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="32"
-                  viewBox="0 -960 960 960"
-                  width="32"
-                >
-                  <path
-                    d="M840-683v503q0 24-18 42t-42 18H180q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h503l157 157ZM479.765-245Q523-245 553.5-275.265q30.5-30.264 30.5-73.5Q584-392 553.735-422.5q-30.264-30.5-73.5-30.5Q437-453 406.5-422.735q-30.5 30.264-30.5 73.5Q376-306 406.265-275.5q30.264 30.5 73.5 30.5ZM233-584h358v-143H233v143Z"
-                  />
-                </svg>
-              </button>
-              <button class="delete-todo-button">
-                <svg
-                  class="delete-todo-icon todo-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="32"
-                  viewBox="0 -960 960 960"
-                  width="32"
-                >
-                  <path
-                    d="M261-120q-24 0-42-18t-18-42v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm106-146h60v-399h-60v399Zm166 0h60v-399h-60v399Z"
-                  />
-                </svg>
-              </button>
-            </div>
-          </li>
-        </ol>
+        <ol class="todos-wrapper" data-todos-wrapper></ol>
         <div class="todo-form-wrapper">
           <form action="" class="todo-form">
             <input
@@ -159,5 +66,55 @@
         </div>
       </div>
     </main>
+
+    <template data-todo-template>
+      <li class="todo">
+        <button class="todo-checkbox" data-todo-checkbox></button>
+        <div
+          class="todo-content"
+          contenteditable="false"
+          data-todo-content=""
+        ></div>
+        <div class="todo-action-button-wrapper">
+          <button class="edit-todo-button" data-edit-todo-button>
+            <svg
+              class="edit-todo-icon todo-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              height="32"
+              viewBox="0 -960 960 960"
+              width="32"
+            >
+              <path
+                d="M794-666 666-794l42-42q17-17 42.5-16.5T793-835l43 43q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Z"
+              />
+            </svg>
+            <svg
+              class="save-todo-icon todo-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              height="32"
+              viewBox="0 -960 960 960"
+              width="32"
+            >
+              <path
+                d="M840-683v503q0 24-18 42t-42 18H180q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h503l157 157ZM479.765-245Q523-245 553.5-275.265q30.5-30.264 30.5-73.5Q584-392 553.735-422.5q-30.264-30.5-73.5-30.5Q437-453 406.5-422.735q-30.5 30.264-30.5 73.5Q376-306 406.265-275.5q30.264 30.5 73.5 30.5ZM233-584h358v-143H233v143Z"
+              />
+            </svg>
+          </button>
+          <button class="delete-todo-button" data-delete-todo-button>
+            <svg
+              class="delete-todo-icon todo-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              height="32"
+              viewBox="0 -960 960 960"
+              width="32"
+            >
+              <path
+                d="M261-120q-24 0-42-18t-18-42v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm106-146h60v-399h-60v399Zm166 0h60v-399h-60v399Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </li>
+    </template>
   </body>
 </html>
