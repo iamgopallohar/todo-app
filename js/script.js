@@ -87,6 +87,23 @@ function submitListForm(e) {
     .scrollIntoView({ behavior: "smooth" });
 }
 
+function submitTodoForm(e) {
+  e.preventDefault();
+  if (todoInput.value === "" || todoInput.value === null) return;
+  const todo = createTodo(todoInput.value);
+  lists.forEach((list) => {
+    if (list.id === activeListId) {
+      list.todos.push(todo);
+    }
+  });
+  todoInput.value = "";
+  save();
+  render();
+  document
+    .querySelector(`[data-id="${todo.id}"`)
+    .scrollIntoView({ behavior: "smooth" });
+}
+
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
   createList("My List"),
 ];
@@ -96,3 +113,4 @@ let activeListId =
 save();
 render();
 listForm.addEventListener("submit", submitListForm);
+todoForm.addEventListener("submit", submitTodoForm);
