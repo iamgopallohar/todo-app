@@ -64,13 +64,41 @@ function renderLists() {
 
 function renderTodos(list) {
   todosWrapper.innerHTML = "";
-  list.todos.forEach((todo) => {
+  list.todos.forEach((todo, todoIndex) => {
     const todoElement = createTodoElement(todo);
     todosWrapper.append(todoElement);
+    handleTodoDeleteButtons({ list, todoElement });
   });
   if (list.todos.length === 0) {
     todosWrapper.append("No Todos Here");
   }
+}
+
+function handleTodoDeleteButtons({ list, todoElement }) {
+  let todoId = todoElement.dataset.id;
+  let deleteButton = todoElement.querySelector(`[data-todo-button="delete"]`);
+  deleteButton.addEventListener("click", () => {
+    let nextTodo = todoElement.nextElementSibling;
+    if (nextTodo) {
+      let todoElementStyles = getComputedStyle(todoElement);
+      let occupiedSpace =
+        parseInt(todoElementStyles.height) +
+        2 * parseInt(todoElementStyles.marginTop);
+      nextTodo.style.marginTop = occupiedSpace + "px";
+      nextTodo.style.transition = "none";
+      setTimeout(() => {
+        nextTodo.style.transition = "";
+        nextTodo.style.marginTop = "";
+      }, 0);
+    }
+    todoElement.remove();
+    list.todos.forEach((todo, todoIndex) => {
+      if (todo.id === todoId) {
+        list.todos.splice(todoIndex, 1);
+      }
+    });
+    save();
+  });
 }
 
 function render() {

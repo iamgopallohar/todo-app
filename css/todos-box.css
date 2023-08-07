@@ -33,7 +33,8 @@
   padding: 0.5rem;
   border: 1px solid var(--border-color-primary);
   border-radius: 0.25rem;
-  margin-block: 1rem;
+  margin-top: 1rem;
+  transition: margin 100ms ease;
 }
 
 .todo-action-button-wrapper button,
