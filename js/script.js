@@ -77,6 +77,11 @@ function render() {
   renderLists();
 }
 
+function saveAndRender() {
+  save();
+  render();
+}
+
 function submitListForm(e) {
   e.preventDefault();
   if (listInput.value === "" || listInput.value === null) return;
@@ -84,8 +89,7 @@ function submitListForm(e) {
   lists.push(list);
   activeListId = list.id;
   listInput.value = "";
-  save();
-  render();
+  saveAndRender();
 }
 
 function submitTodoForm(e) {
@@ -98,8 +102,7 @@ function submitTodoForm(e) {
     }
   });
   todoInput.value = "";
-  save();
-  render();
+  saveAndRender();
   document
     .querySelector(`[data-id="${todo.id}"`)
     .scrollIntoView({ behavior: "smooth" });
@@ -109,8 +112,7 @@ function changeActiveList(e) {
   if (e.target.dataset.id) {
     activeListId = e.target.dataset.id;
   }
-  save();
-  render();
+  saveAndRender();
 }
 
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
@@ -119,8 +121,7 @@ const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
 let activeListId =
   localStorage.getItem(LOCAL_ACTIVE_LIST_ID_KEY) || lists[0].id;
 
-save();
-render();
+saveAndRender();
 listForm.addEventListener("submit", submitListForm);
 todoForm.addEventListener("submit", submitTodoForm);
 listsWrapper.addEventListener("click", changeActiveList);
