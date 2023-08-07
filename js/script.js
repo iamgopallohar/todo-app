@@ -67,14 +67,16 @@ function renderTodos(list) {
   list.todos.forEach((todo, todoIndex) => {
     const todoElement = createTodoElement(todo);
     todosWrapper.append(todoElement);
-    handleTodoDeleteButtons({ list, todoElement });
+    handleTodoDeleteButton({ list, todoElement });
+    handleTodoCheckbox({ todo, todoElement });
+    handleTodoEditButton({ todo, todoElement });
   });
   if (list.todos.length === 0) {
     todosWrapper.append("No Todos Here");
   }
 }
 
-function handleTodoDeleteButtons({ list, todoElement }) {
+function handleTodoDeleteButton({ list, todoElement }) {
   let todoId = todoElement.dataset.id;
   let deleteButton = todoElement.querySelector(`[data-todo-button="delete"]`);
   deleteButton.addEventListener("click", () => {
@@ -97,6 +99,37 @@ function handleTodoDeleteButtons({ list, todoElement }) {
         list.todos.splice(todoIndex, 1);
       }
     });
+    save();
+  });
+}
+
+function handleTodoCheckbox({ todo, todoElement }) {
+  let checkbox = todoElement.querySelector(`[data-todo-button="checkbox"]`);
+  let contentElement = todoElement.querySelector(`[data-todo-content]`);
+  checkbox.addEventListener("click", () => {
+    if (contentElement.contentEditable === "true") {
+      contentElement.contentEditable = "false";
+      todo.content = contentElement.textContent;
+      contentElement.textContent = todo.content;
+    }
+    todo.done = !todo.done;
+    todoElement.dataset.done = todo.done;
+    save();
+  });
+}
+
+function handleTodoEditButton({ todo, todoElement }) {
+  let editButton = todoElement.querySelector(`[data-todo-button="edit"]`);
+  let contentElement = todoElement.querySelector(`[data-todo-content]`);
+  editButton.addEventListener("click", () => {
+    if (contentElement.contentEditable === "false") {
+      contentElement.contentEditable = "true";
+      contentElement.focus();
+    } else {
+      contentElement.contentEditable = "false";
+      todo.content = contentElement.textContent;
+      contentElement.textContent = todo.content;
+    }
     save();
   });
 }
