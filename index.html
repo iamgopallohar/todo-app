@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/lists-box.css" />
     <link rel="stylesheet" href="css/todos-box.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="css/scrollbar.css" />
     <!-- js -->
     <script src="js/script.js" defer></script>
     <!-- google-fonts -->
@@ -26,45 +28,47 @@
           <h1>Todos Lists</h1>
         </div>
         <ol class="lists-wrapper" data-lists-wrapper></ol>
-        <div class="list-form-wrapper">
-          <form action="" class="list-form" data-list-form>
+        <div class="list-form-wrapper add-form-wrapper">
+          <form action="" class="list-form add-form" data-list-form>
             <input
               type="text"
               name="list-input"
-              class="list-input"
+              class="list-input add-input"
               id="list-input"
               autocapitalize="none"
               autocomplete="off"
               data-list-input
             />
-            <button type="submit" class="add-list-button"></button>
+            <button type="submit" class="add-list-button add-button"></button>
           </form>
         </div>
       </div>
       <div class="todos-box">
-        <div class="list-header">
-          <h2 class="active-list-name">Current List</h2>
-          <span class="remaining-tasks">10 tasks remaining</span>
-          <span class="done-tasks">10 tasks remaining</span>
+        <div class="todos-list-content">
+          <div class="list-header">
+            <h2 class="active-list-name">Current List</h2>
+            <span class="remaining-tasks">10 tasks remaining</span>
+            <span class="done-tasks">10 tasks remaining</span>
+          </div>
+          <ol class="todos-wrapper" data-todos-wrapper></ol>
+          <div class="list-action-button-wrapper">
+            <button class="delete-list-button">Delete List</button>
+            <button class="rename-list-button">Rename List</button>
+          </div>
         </div>
-        <ol class="todos-wrapper" data-todos-wrapper></ol>
-        <div class="todo-form-wrapper">
-          <form action="" class="todo-form" data-todo-form>
+        <div class="todo-form-wrapper add-form-wrapper">
+          <form action="" class="todo-form add-form" data-todo-form>
             <input
               type="text"
               name="todo-input"
-              class="todo-input"
+              class="todo-input add-input"
               id="todo-input"
               autocapitalize="none"
               autocomplete="off"
               data-todo-input
             />
-            <button type="submit" class="add-todo-button">+</button>
+            <button type="submit" class="add-todo-button add-button">+</button>
           </form>
-        </div>
-        <div class="list-action-button-wrapper">
-          <button class="delete-list-button">Delete List</button>
-          <button class="rename-list-button">Rename List</button>
         </div>
       </div>
     </main>

@@ -1,0 +1,79 @@
+.add-form-wrapper {
+  padding: 1rem;
+}
+
+.add-form {
+  width: 100%;
+  display: flex;
+  border: 1px solid var(--border-color-primary);
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+
+.add-form:focus-within {
+  border-color: var(--border-color-active);
+}
+
+.add-input,
+.add-button {
+  background-color: transparent;
+  outline: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+}
+
+.add-input {
+  border: 1px solid transparent;
+  padding: 0.5em 1em;
+  width: 100%;
+}
+
+.add-button {
+  flex-shrink: 0;
+  width: calc(2.5em + 2px);
+  height: calc(2.5em + 2px);
+  border: 1px solid transparent;
+  border-left-color: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-button::before,
+.add-button::after {
+  content: "";
+  width: 40%;
+  height: 2px;
+  background-color: var(--border-color-primary);
+  position: absolute;
+}
+
+.add-button::after {
+  transform: rotate(90deg);
+}
+
+.add-form:focus-within .add-button::before,
+.add-form:focus-within .add-button::after {
+  background-color: var(--border-color-active);
+}
+
+/* todo form */
+
+.todo-form-wrapper {
+  width: calc(100% - 1rem);
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  right: 1rem;
+  background-image: linear-gradient(transparent, var(--bg-primary) 50%);
+}
+
+.todo-form {
+  width: calc(var(--max-width) - 2rem);
+  display: flex;
+  background-color: var(--bg-primary);
+}
