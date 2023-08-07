@@ -39,11 +39,14 @@ function createListElement(list) {
   return listElement;
 }
 
-function createTodoElement(todo) {
+function createTodoElement(todo, list) {
   const todoElement = todoTemplate.content.cloneNode(true).children[0];
   todoElement.dataset.done = todo.done;
   todoElement.dataset.id = todo.id;
   todoElement.querySelector("[data-todo-content]").textContent = todo.content;
+  handleTodoDeleteButton({ list, todoElement });
+  handleTodoCheckbox({ todo, todoElement });
+  handleTodoEditButton({ todo, todoElement });
   return todoElement;
 }
 
@@ -64,12 +67,9 @@ function renderLists() {
 
 function renderTodos(list) {
   todosWrapper.innerHTML = "";
-  list.todos.forEach((todo, todoIndex) => {
-    const todoElement = createTodoElement(todo);
+  list.todos.forEach((todo) => {
+    const todoElement = createTodoElement(todo, list);
     todosWrapper.append(todoElement);
-    handleTodoDeleteButton({ list, todoElement });
-    handleTodoCheckbox({ todo, todoElement });
-    handleTodoEditButton({ todo, todoElement });
   });
   if (list.todos.length === 0) {
     todosWrapper.append("No Todos Here");
@@ -160,13 +160,16 @@ function submitTodoForm(e) {
   lists.forEach((list) => {
     if (list.id === activeListId) {
       list.todos.push(todo);
+      todosWrapper.append(createTodoElement(todo, list));
     }
   });
   todoInput.value = "";
-  saveAndRender();
-  document
-    .querySelector(`[data-id="${todo.id}"`)
-    .scrollIntoView({ behavior: "smooth" });
+  save();
+  setTimeout(() => {
+    document
+      .querySelector(`[data-id="${todo.id}"`)
+      .scrollIntoView({ behavior: "smooth" });
+  }, 0);
 }
 
 function changeActiveList(e) {
