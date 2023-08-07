@@ -53,6 +53,9 @@ function renderLists() {
     const listElement = createListElement(list);
     listsWrapper.append(listElement);
     if (list.id === activeListId) {
+      setTimeout(() => {
+        listElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 0);
       listElement.classList.add("active-list");
       renderTodos(list);
     }
@@ -62,7 +65,8 @@ function renderLists() {
 function renderTodos(list) {
   todosWrapper.innerHTML = "";
   list.todos.forEach((todo) => {
-    todosWrapper.append(createTodoElement(todo));
+    const todoElement = createTodoElement(todo);
+    todosWrapper.append(todoElement);
   });
   if (list.todos.length === 0) {
     todosWrapper.append("No Todos Here");
@@ -82,9 +86,6 @@ function submitListForm(e) {
   listInput.value = "";
   save();
   render();
-  document
-    .querySelector(`[data-id="${list.id}"`)
-    .scrollIntoView({ behavior: "smooth" });
 }
 
 function submitTodoForm(e) {
@@ -104,6 +105,14 @@ function submitTodoForm(e) {
     .scrollIntoView({ behavior: "smooth" });
 }
 
+function changeActiveList(e) {
+  if (e.target.dataset.id) {
+    activeListId = e.target.dataset.id;
+  }
+  save();
+  render();
+}
+
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
   createList("My List"),
 ];
@@ -114,3 +123,4 @@ save();
 render();
 listForm.addEventListener("submit", submitListForm);
 todoForm.addEventListener("submit", submitTodoForm);
+listsWrapper.addEventListener("click", changeActiveList);

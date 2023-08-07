@@ -71,14 +71,14 @@
 
     <template data-todo-template>
       <li class="todo">
-        <button class="todo-checkbox" data-todo-checkbox></button>
+        <button class="todo-checkbox" data-todo-button="checkbox"></button>
         <div
           class="todo-content"
           contenteditable="false"
           data-todo-content=""
         ></div>
         <div class="todo-action-button-wrapper">
-          <button class="edit-todo-button" data-edit-todo-button>
+          <button class="edit-todo-button" data-todo-button="edit">
             <svg
               class="edit-todo-icon todo-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@
               />
             </svg>
           </button>
-          <button class="delete-todo-button" data-delete-todo-button>
+          <button class="delete-todo-button" data-todo-button="delete">
             <svg
               class="delete-todo-icon todo-icon"
               xmlns="http://www.w3.org/2000/svg"
