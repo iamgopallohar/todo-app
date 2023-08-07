@@ -31,16 +31,28 @@
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  border: 1px solid var(--border-color-primary);
+  background-color: var(--bg-tertiary);
   border-radius: 0.25rem;
   margin-top: 1rem;
-  transition: margin 100ms ease;
+  transition: margin 200ms ease;
+  animation: in-animation 200ms ease 1 forwards;
+}
+
+@keyframes in-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
 }
 
 .todo-action-button-wrapper button,
 .todo-checkbox {
   background-color: transparent;
-  outline-color: transparent;
+  outline: transparent;
   font-size: inherit;
   font-family: inherit;
   color: inherit;
@@ -64,9 +76,9 @@
   --size: 65%;
   width: var(--size);
   height: var(--size);
-  border: 2px solid var(--text-primary);
+  border: 2px solid var(--text-secondary);
   border-radius: 100%;
-  transition: border-radius 0.1s ease, width 0.1s ease, transform 0.1s ease;
+  transition: border-radius 200ms ease, width 200ms ease, transform 200ms ease;
 }
 
 [data-done="true"] .todo-checkbox::before {
@@ -111,7 +123,7 @@
   background-repeat: repeat;
   background-size: 100% 1.5em;
   width: 0%;
-  transition: width 0.1s ease;
+  transition: width 200ms ease;
   pointer-events: none;
 }
 
@@ -140,9 +152,15 @@
   justify-content: center;
 }
 
+.todo-checkbox:focus-visible,
+.edit-todo-button:focus-visible,
+.delete-todo-button:focus-visible {
+  border-color: var(--border-color-active);
+}
+
 .todo-icon {
   --size: 80%;
-  fill: currentColor;
+  fill: var(--text-secondary);
   width: var(--size);
   height: var(--size);
 }
@@ -154,4 +172,13 @@
   + .todo-action-button-wrapper
   .save-todo-icon {
   display: none;
+}
+
+.todo-checkbox:hover::before {
+  border-color: var(--text-primary);
+}
+
+.edit-todo-button:hover .todo-icon,
+.delete-todo-button:hover .todo-icon {
+  fill: var(--text-primary);
 }

@@ -36,7 +36,7 @@
   white-space: nowrap;
   overflow: hidden;
   position: relative;
-  outline-color: transparent;
+  outline: transparent;
   border: 1px solid transparent;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .list:focus-visible {
-  border-color: var(--text-secondary);
+  border-color: var(--border-color-active);
 }
 
 .list::after {
@@ -96,10 +96,14 @@
   overflow: hidden;
 }
 
+.list-form:focus-within {
+  border-color: var(--border-color-active);
+}
+
 .list-input,
 .add-list-button {
   background-color: transparent;
-  outline-color: transparent;
+  outline: transparent;
   font-size: inherit;
   font-family: inherit;
   color: inherit;
@@ -134,4 +138,9 @@
 
 .add-list-button::after {
   transform: rotate(90deg);
+}
+
+.list-form:focus-within .add-list-button::before,
+.list-form:focus-within .add-list-button::after {
+  background-color: var(--border-color-active);
 }
