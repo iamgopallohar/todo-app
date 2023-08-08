@@ -133,7 +133,9 @@
 .todo-content::before {
   content: "";
   position: absolute;
-  inset: 0.25rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  right: 0.25rem;
   --strike-through-color: var(--text-secondary);
   background-image: linear-gradient(
     transparent 0rem,
@@ -152,6 +154,7 @@
 
 .todo[data-done="true"] .todo-content::before {
   width: calc(100% - 0.5rem);
+  left: 0.25rem;
 }
 
 .todo-action-button-wrapper {

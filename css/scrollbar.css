@@ -25,7 +25,8 @@
   background-color: transparent;
 }
 
-.lists-wrapper:hover::-webkit-scrollbar-thumb {
+.lists-wrapper:hover::-webkit-scrollbar-thumb,
+.lists-wrapper:focus-within::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-bg);
   border-radius: 100vmax;
 }
