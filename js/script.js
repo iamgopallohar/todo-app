@@ -50,6 +50,13 @@ function createTodoElement(todo, list) {
   return todoElement;
 }
 
+function createNoTodoElement() {
+  const element = document.createElement("div");
+  element.classList.add("no-todos");
+  element.textContent = "No Todos Here";
+  return element;
+}
+
 function renderLists() {
   listsWrapper.innerHTML = "";
   lists.forEach((list) => {
@@ -72,7 +79,7 @@ function renderTodos(list) {
     todosWrapper.append(todoElement);
   });
   if (list.todos.length === 0) {
-    todosWrapper.append("No Todos Here");
+    todosWrapper.append(createNoTodoElement());
   }
 }
 
@@ -100,6 +107,10 @@ function handleTodoDeleteButton({ list, todoElement }) {
       }
     });
     save();
+    const noTodosElement = todosWrapper.querySelector(".no-todos");
+    if (list.todos.length === 0 && noTodosElement === null) {
+      todosWrapper.append(createNoTodoElement());
+    }
   });
 }
 
@@ -161,6 +172,10 @@ function submitTodoForm(e) {
     if (list.id === activeListId) {
       list.todos.push(todo);
       todosWrapper.append(createTodoElement(todo, list));
+      let noTodosElement = todosWrapper.querySelector(".no-todos");
+      if (noTodosElement) {
+        noTodosElement.remove();
+      }
     }
   });
   todoInput.value = "";
