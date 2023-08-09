@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;1,500&family=Open+Sans:ital,wght@0,500;0,700;1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <title>Todo App</title>
@@ -46,14 +46,16 @@
       <div class="todos-box">
         <div class="todos-list-content">
           <div class="list-header">
-            <h2 class="active-list-name">Current List</h2>
-            <span class="remaining-tasks">10 tasks remaining</span>
-            <span class="done-tasks">10 tasks remaining</span>
+            <h2 class="active-list-heading" data-active-list-heading></h2>
           </div>
           <ol class="todos-wrapper" data-todos-wrapper></ol>
-          <div class="list-action-button-wrapper">
-            <button class="delete-list-button">Delete List</button>
-            <button class="rename-list-button">Rename List</button>
+          <div class="list-button-wrapper">
+            <button class="delete-list-button" data-delete-list-button>
+              Delete List
+            </button>
+            <button class="clear-done-button" data-clear-done-button>
+              Clear Completed Tasks
+            </button>
           </div>
         </div>
         <div class="todo-form-wrapper add-form-wrapper">
@@ -67,7 +69,7 @@
               autocomplete="off"
               data-todo-input
             />
-            <button type="submit" class="add-todo-button add-button">+</button>
+            <button type="submit" class="add-todo-button add-button"></button>
           </form>
         </div>
       </div>

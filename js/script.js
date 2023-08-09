@@ -8,6 +8,7 @@ const listForm = document.querySelector("[data-list-form]");
 const listInput = document.querySelector("[data-list-input]");
 const todoForm = document.querySelector("[data-todo-form]");
 const todoInput = document.querySelector("[data-todo-input]");
+const activeListHeading = document.querySelector("[data-active-list-heading]");
 
 function save() {
   localStorage.setItem(LOCAL_LISTS_KEY, JSON.stringify(lists));
@@ -68,6 +69,7 @@ function renderLists() {
       }, 0);
       listElement.classList.add("active-list");
       renderTodos(list);
+      activeListHeading.textContent = list.name;
     }
   });
 }
@@ -190,8 +192,8 @@ function submitTodoForm(e) {
 function changeActiveList(e) {
   if (e.target.dataset.id) {
     activeListId = e.target.dataset.id;
+    saveAndRender();
   }
-  saveAndRender();
 }
 
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
