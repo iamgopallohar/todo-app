@@ -1,3 +1,4 @@
+/* .todos-list-content */
 .todos-list-content::-webkit-scrollbar {
   width: 1rem;
 }
@@ -17,6 +18,7 @@
   background-color: var(--text-secondary);
 }
 
+/* .lists-wrapper */
 .lists-wrapper::-webkit-scrollbar {
   width: 0.5rem;
 }

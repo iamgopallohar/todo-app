@@ -1,0 +1,161 @@
+.todo {
+  --button-size: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 0.25rem;
+  transition: margin 200ms ease;
+  animation: in-animation 200ms ease 1 forwards;
+}
+
+.todo:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+@keyframes in-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+.todo-button-wrapper button,
+.todo-checkbox {
+  background-color: transparent;
+  outline: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.todo-checkbox {
+  --size: var(--button-size);
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.todo-checkbox::before {
+  content: "";
+  --size: 65%;
+  width: var(--size);
+  height: var(--size);
+  border: 2px solid var(--text-secondary);
+  border-radius: 100%;
+  transition: border-radius 200ms ease, width 200ms ease, transform 200ms ease;
+}
+
+[data-done="true"] .todo-checkbox::before {
+  width: calc(var(--size) / 2);
+  border-width: 0px 2px 2px 0px;
+  border-radius: 0;
+  --translate: -10%;
+  transform: rotate(45deg) translate(var(--translate), var(--translate));
+}
+
+.todo-content {
+  padding: calc(0.25rem);
+  max-width: calc(100% - (3 * var(--button-size)));
+  margin-right: auto;
+  position: relative;
+  outline: none;
+  overflow-wrap: break-word;
+}
+
+.todo-content[contenteditable="true"]::after {
+  content: "";
+  width: calc(100% - 0.5rem);
+  height: 2px;
+  background-color: currentColor;
+  position: absolute;
+  inset: 0.25rem;
+  top: 100%;
+}
+
+.todo-content::before {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  right: 0.25rem;
+  --strike-through-color: var(--text-secondary);
+  background-image: linear-gradient(
+    transparent 0rem,
+    transparent calc((1.5em / 2) - 1px),
+    var(--strike-through-color) calc((1.5em / 2) - 1px),
+    var(--strike-through-color) calc((1.5em / 2) + 1px),
+    transparent calc((1.5em / 2) + 1px),
+    transparent 1.5em
+  );
+  background-repeat: repeat;
+  background-size: 100% 1.5em;
+  width: 0%;
+  transition: width 200ms ease;
+  pointer-events: none;
+}
+
+.todo[data-done="true"] .todo-content::before {
+  width: calc(100% - 0.5rem);
+  left: 0.25rem;
+}
+
+.todo-button-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+[data-done="true"] .edit-todo-button {
+  display: none;
+}
+
+.edit-todo-button,
+.delete-todo-button {
+  --size: var(--button-size);
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-checkbox:focus-visible,
+.edit-todo-button:focus-visible,
+.delete-todo-button:focus-visible {
+  border-color: var(--border-color-active);
+}
+
+.todo-icon {
+  --size: 80%;
+  fill: var(--text-secondary);
+  width: var(--size);
+  height: var(--size);
+}
+
+.todo-content[contenteditable="true"] + .todo-button-wrapper .edit-todo-icon,
+.todo-content[contenteditable="false"] + .todo-button-wrapper .save-todo-icon {
+  display: none;
+}
+
+.todo-checkbox:hover::before {
+  border-color: var(--text-primary);
+}
+
+.edit-todo-button:hover .todo-icon,
+.delete-todo-button:hover .todo-icon {
+  fill: var(--text-primary);
+}

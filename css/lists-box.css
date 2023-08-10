@@ -57,7 +57,7 @@
   background-image: linear-gradient(
     90deg,
     transparent,
-    var(--background-color) 80%
+    var(--background-color) 75%
   );
   width: 3em;
   height: 1.5em;
