@@ -9,6 +9,7 @@ const listInput = document.querySelector("[data-list-input]");
 const todoForm = document.querySelector("[data-todo-form]");
 const todoInput = document.querySelector("[data-todo-input]");
 const activeListHeading = document.querySelector("[data-active-list-heading]");
+const clearDoneButton = document.querySelector("[data-clear-done-button]");
 
 function save() {
   localStorage.setItem(LOCAL_LISTS_KEY, JSON.stringify(lists));
@@ -183,9 +184,7 @@ function submitTodoForm(e) {
   todoInput.value = "";
   save();
   setTimeout(() => {
-    document
-      .querySelector(`[data-id="${todo.id}"`)
-      .scrollIntoView({ behavior: "smooth" });
+    getElementByObj(todo).scrollIntoView({ behavior: "smooth" });
   }, 0);
 }
 
@@ -196,6 +195,50 @@ function changeActiveList(e) {
   }
 }
 
+function clearDoneTasks() {
+  lists.forEach((list) => {
+    if (list.id !== activeListId) return;
+    list.todos.forEach((todo) => {
+      if (!todo.done) return;
+      const todoElement = getElementByObj(todo);
+      removeElementInAnimation(todoElement);
+    });
+
+    list.todos = list.todos.filter((todo) => !todo.done);
+    save();
+  });
+}
+
+function getElementByObj(obj) {
+  return document.querySelector(`[data-id="${obj.id}"]`);
+}
+
+function purgeNumber(str) {
+  const reg = /[^\d\.]/g;
+  return parseInt(str.replace(reg, ""));
+}
+
+function removeElementInAnimation(element) {
+  // there are prerequisite css for this
+  const nextElement = element.nextElementSibling;
+  if (nextElement) {
+    const elementStyles = getComputedStyle(element);
+    const nextElementStyles = getComputedStyle(nextElement);
+    const occupiedSpace =
+      purgeNumber(elementStyles.marginTop) +
+      purgeNumber(elementStyles.height) +
+      purgeNumber(nextElementStyles.marginTop);
+    nextElement.style.transition = "none";
+    nextElement.style.marginTop = occupiedSpace + "px";
+    setTimeout(() => {
+      nextElement.style.transition = "";
+      nextElement.style.marginTop = "";
+    }, 0);
+  }
+  element.remove();
+}
+
+// execution
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
   createList("My List"),
 ];
@@ -206,3 +249,4 @@ saveAndRender();
 listForm.addEventListener("submit", submitListForm);
 todoForm.addEventListener("submit", submitTodoForm);
 listsWrapper.addEventListener("click", changeActiveList);
+clearDoneButton.addEventListener("click", clearDoneTasks);
