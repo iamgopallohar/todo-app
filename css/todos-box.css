@@ -50,6 +50,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  transition: margin 200ms ease;
 }
 
 .list-button-wrapper button {

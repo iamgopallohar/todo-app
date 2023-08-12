@@ -190,6 +190,7 @@ function clearDoneTasks() {
     removeElementInAnimation(todoElement);
   });
   list.todos = list.todos.filter((todo) => !todo.done);
+  addNoTodoElement(list);
   save();
 }
 
@@ -204,9 +205,12 @@ function purgeNumber(str) {
 
 function removeElementInAnimation(element) {
   // there are prerequisite css for this
-  const nextElement = element.nextElementSibling;
+  const elementStyles = getComputedStyle(element);
+  let nextElement = element.nextElementSibling;
+  if (!nextElement) {
+    nextElement = element.parentElement.nextElementSibling;
+  }
   if (nextElement) {
-    const elementStyles = getComputedStyle(element);
     const nextElementStyles = getComputedStyle(nextElement);
     const occupiedSpace =
       purgeNumber(elementStyles.marginTop) +
@@ -219,7 +223,6 @@ function removeElementInAnimation(element) {
       nextElement.style.marginTop = "";
     }, 0);
   }
-  // Todo: add padding animation
   element.remove();
 }
 
