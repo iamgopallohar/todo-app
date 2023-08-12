@@ -10,6 +10,7 @@ const todoForm = document.querySelector("[data-todo-form]");
 const todoInput = document.querySelector("[data-todo-input]");
 const activeListHeading = document.querySelector("[data-active-list-heading]");
 const clearDoneButton = document.querySelector("[data-clear-done-button]");
+const scrollIntoViewOptions = { behavior: "smooth", block: "nearest" };
 
 function save() {
   localStorage.setItem(LOCAL_LISTS_KEY, JSON.stringify(lists));
@@ -41,12 +42,12 @@ function createListElement(list) {
   return listElement;
 }
 
-function createTodoElement(todo, list) {
+function createTodoElement(todo) {
   const todoElement = todoTemplate.content.cloneNode(true).children[0];
   todoElement.dataset.done = todo.done;
   todoElement.dataset.id = todo.id;
   todoElement.querySelector("[data-todo-content]").textContent = todo.content;
-  handleTodoDeleteButton({ list, todoElement });
+  handleTodoDeleteButton(todoElement);
   handleTodoCheckbox({ todo, todoElement });
   handleTodoEditButton({ todo, todoElement });
   return todoElement;
@@ -59,61 +60,50 @@ function createNoTodoElement() {
   return element;
 }
 
+function addNoTodoElement(list) {
+  const noTodosElement = todosWrapper.querySelector(".no-todos");
+  if (list.todos.length === 0 && noTodosElement === null) {
+    todosWrapper.append(createNoTodoElement());
+  }
+}
+
 function renderLists() {
   listsWrapper.innerHTML = "";
   lists.forEach((list) => {
     const listElement = createListElement(list);
     listsWrapper.append(listElement);
-    if (list.id === activeListId) {
-      setTimeout(() => {
-        listElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }, 0);
-      listElement.classList.add("active-list");
-      renderTodos(list);
-      activeListHeading.textContent = list.name;
-    }
   });
+}
+
+function renderActiveList() {
+  const activeList = getActiveList();
+  const listElement = getElementByObj({ id: activeListId });
+  listElement.classList.toggle("active-list", activeList.id === activeListId);
+  activeListHeading.textContent = activeList.name;
+  renderTodos(activeList);
+  setTimeout(() => {
+    listElement.scrollIntoView(scrollIntoViewOptions);
+  }, 0);
 }
 
 function renderTodos(list) {
   todosWrapper.innerHTML = "";
   list.todos.forEach((todo) => {
-    const todoElement = createTodoElement(todo, list);
+    const todoElement = createTodoElement(todo);
     todosWrapper.append(todoElement);
   });
-  if (list.todos.length === 0) {
-    todosWrapper.append(createNoTodoElement());
-  }
+  addNoTodoElement(list);
 }
 
-function handleTodoDeleteButton({ list, todoElement }) {
+function handleTodoDeleteButton(todoElement) {
   let todoId = todoElement.dataset.id;
   let deleteButton = todoElement.querySelector(`[data-todo-button="delete"]`);
   deleteButton.addEventListener("click", () => {
-    let nextTodo = todoElement.nextElementSibling;
-    if (nextTodo) {
-      let todoElementStyles = getComputedStyle(todoElement);
-      let occupiedSpace =
-        parseInt(todoElementStyles.height) +
-        2 * parseInt(todoElementStyles.marginTop);
-      nextTodo.style.marginTop = occupiedSpace + "px";
-      nextTodo.style.transition = "none";
-      setTimeout(() => {
-        nextTodo.style.transition = "";
-        nextTodo.style.marginTop = "";
-      }, 0);
-    }
-    todoElement.remove();
-    list.todos.forEach((todo, todoIndex) => {
-      if (todo.id === todoId) {
-        list.todos.splice(todoIndex, 1);
-      }
-    });
+    removeElementInAnimation(todoElement);
+    const list = getActiveList();
+    list.todos = list.todos.filter((todo) => todo.id !== todoId);
     save();
-    const noTodosElement = todosWrapper.querySelector(".no-todos");
-    if (list.todos.length === 0 && noTodosElement === null) {
-      todosWrapper.append(createNoTodoElement());
-    }
+    createNoTodoElement(list);
   });
 }
 
@@ -122,9 +112,7 @@ function handleTodoCheckbox({ todo, todoElement }) {
   let contentElement = todoElement.querySelector(`[data-todo-content]`);
   checkbox.addEventListener("click", () => {
     if (contentElement.contentEditable === "true") {
-      contentElement.contentEditable = "false";
-      todo.content = contentElement.textContent;
-      contentElement.textContent = todo.content;
+      saveEditingTodo(contentElement, todo);
     }
     todo.done = !todo.done;
     todoElement.dataset.done = todo.done;
@@ -140,16 +128,21 @@ function handleTodoEditButton({ todo, todoElement }) {
       contentElement.contentEditable = "true";
       contentElement.focus();
     } else {
-      contentElement.contentEditable = "false";
-      todo.content = contentElement.textContent;
-      contentElement.textContent = todo.content;
+      saveEditingTodo(contentElement, todo);
     }
-    save();
   });
+}
+
+function saveEditingTodo(contentElement, todo) {
+  contentElement.contentEditable = "false";
+  todo.content = contentElement.textContent;
+  contentElement.textContent = todo.content;
+  save();
 }
 
 function render() {
   renderLists();
+  renderActiveList();
 }
 
 function saveAndRender() {
@@ -171,20 +164,14 @@ function submitTodoForm(e) {
   e.preventDefault();
   if (todoInput.value === "" || todoInput.value === null) return;
   const todo = createTodo(todoInput.value);
-  lists.forEach((list) => {
-    if (list.id === activeListId) {
-      list.todos.push(todo);
-      todosWrapper.append(createTodoElement(todo, list));
-      let noTodosElement = todosWrapper.querySelector(".no-todos");
-      if (noTodosElement) {
-        noTodosElement.remove();
-      }
-    }
-  });
+  getActiveList().todos.push(todo);
+  todosWrapper.append(createTodoElement(todo));
+  let noTodosElement = todosWrapper.querySelector(".no-todos");
+  if (noTodosElement) noTodosElement.remove();
   todoInput.value = "";
   save();
   setTimeout(() => {
-    getElementByObj(todo).scrollIntoView({ behavior: "smooth" });
+    getElementByObj(todo).scrollIntoView(scrollIntoViewOptions);
   }, 0);
 }
 
@@ -196,17 +183,14 @@ function changeActiveList(e) {
 }
 
 function clearDoneTasks() {
-  lists.forEach((list) => {
-    if (list.id !== activeListId) return;
-    list.todos.forEach((todo) => {
-      if (!todo.done) return;
-      const todoElement = getElementByObj(todo);
-      removeElementInAnimation(todoElement);
-    });
-
-    list.todos = list.todos.filter((todo) => !todo.done);
-    save();
+  const list = getActiveList();
+  list.todos.forEach((todo) => {
+    if (!todo.done) return;
+    const todoElement = getElementByObj(todo);
+    removeElementInAnimation(todoElement);
   });
+  list.todos = list.todos.filter((todo) => !todo.done);
+  save();
 }
 
 function getElementByObj(obj) {
@@ -235,7 +219,12 @@ function removeElementInAnimation(element) {
       nextElement.style.marginTop = "";
     }, 0);
   }
+  // Todo: add padding animation
   element.remove();
+}
+
+function getActiveList() {
+  return lists.filter((list) => list.id === activeListId)[0];
 }
 
 // execution
