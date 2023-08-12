@@ -29,15 +29,22 @@
 
 .list {
   --background-color: var(--bg-secondary);
+  --padding-y: 0.5em;
+  --line-height: 1.5em;
+  --border-width: 1px;
   background-color: var(--background-color);
-  padding: 0.5em 1em;
+  min-height: calc(
+    var(--line-height) + (2 * (var(--padding-y) + var(--border-width)))
+  );
+  padding: var(--padding-y) 1em;
   border-radius: 0.25em;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
   position: relative;
   outline: transparent;
-  border: 1px solid transparent;
+  border: var(--border-width) solid transparent;
+  background-clip: padding-box;
 }
 
 .list:hover {

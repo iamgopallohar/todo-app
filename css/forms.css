@@ -5,7 +5,7 @@
 .add-form {
   width: 100%;
   display: flex;
-  border: 1px solid var(--border-color-primary);
+  border: 2px solid var(--border-color-primary);
   border-radius: 0.25em;
   overflow: hidden;
 }
@@ -40,6 +40,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.add-button:focus-visible {
+  box-shadow: inset 0px 0px 0px 2px var(--border-color-active);
 }
 
 .add-button::before,
@@ -61,7 +66,6 @@
 }
 
 /* todo form */
-
 .todo-form-wrapper {
   width: calc(100% - 1rem);
   position: absolute;
