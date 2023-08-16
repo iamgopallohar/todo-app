@@ -45,6 +45,7 @@
   outline: transparent;
   border: var(--border-width) solid transparent;
   background-clip: padding-box;
+  transition: margin 200ms ease;
 }
 
 .list:hover {

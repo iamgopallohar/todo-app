@@ -10,6 +10,9 @@ const todoForm = document.querySelector("[data-todo-form]");
 const todoInput = document.querySelector("[data-todo-input]");
 const activeListHeading = document.querySelector("[data-active-list-heading]");
 const clearDoneButton = document.querySelector("[data-clear-done-button]");
+const deleteListButton = document.querySelector("[data-delete-list-button]");
+const todosBox = document.querySelector("[data-todos-box]");
+const noListSelected = document.querySelector("[data-no-list-selected]");
 const scrollIntoViewOptions = { behavior: "smooth", block: "nearest" };
 
 function save() {
@@ -77,13 +80,20 @@ function renderLists() {
 
 function renderActiveList() {
   const activeList = getActiveList();
-  const listElement = getElementByObj({ id: activeListId });
-  listElement.classList.toggle("active-list", activeList.id === activeListId);
-  activeListHeading.textContent = activeList.name;
-  renderTodos(activeList);
-  setTimeout(() => {
-    listElement.scrollIntoView(scrollIntoViewOptions);
-  }, 0);
+  if (activeList) {
+    const listElement = getElementByObj({ id: activeListId });
+    listElement.classList.toggle("active-list", activeList.id === activeListId);
+    activeListHeading.textContent = activeList.name;
+    renderTodos(activeList);
+    setTimeout(() => {
+      listElement.scrollIntoView(scrollIntoViewOptions);
+    }, 0);
+    todosBox.classList.remove("hidden");
+    noListSelected.classList.add("hidden");
+  } else {
+    todosBox.classList.add("hidden");
+    noListSelected.classList.remove("hidden");
+  }
 }
 
 function renderTodos(list) {
@@ -230,6 +240,16 @@ function getActiveList() {
   return lists.filter((list) => list.id === activeListId)[0];
 }
 
+function deleteActiveList() {
+  lists.forEach((list, listIndex) => {
+    if (list.id !== activeListId) return;
+    removeElementInAnimation(getElementByObj(list));
+    lists.splice(listIndex, 1);
+    save();
+  });
+  renderActiveList();
+}
+
 // execution
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
   createList("My List"),
@@ -242,3 +262,4 @@ listForm.addEventListener("submit", submitListForm);
 todoForm.addEventListener("submit", submitTodoForm);
 listsWrapper.addEventListener("click", changeActiveList);
 clearDoneButton.addEventListener("click", clearDoneTasks);
+deleteListButton.addEventListener("click", deleteActiveList);
