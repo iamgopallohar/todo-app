@@ -76,8 +76,13 @@ function renderLists() {
 function renderActiveList() {
   const activeList = getActiveList();
   if (activeList) {
+    [...listsWrapper.children].forEach((listElement) => {
+      listElement.classList.toggle(
+        "active-list",
+        activeList.id === listElement.dataset.id
+      );
+    });
     const listElement = getElementByObj({ id: activeListId });
-    listElement.classList.toggle("active-list", activeList.id === activeListId);
     activeListHeading.textContent = activeList.name;
     renderTodos(activeList);
     setTimeout(() => {
@@ -150,20 +155,17 @@ function render() {
   renderActiveList();
 }
 
-function saveAndRender() {
-  save();
-  render();
-}
-
 function submitListForm(e) {
   e.preventDefault();
   if (listInput.value === "" || listInput.value === null) return;
   const list = createList(listInput.value);
   lists.push(list);
+  listsWrapper.append(createListElement(list));
   activeListId = list.id;
   listInput.value = "";
   toggleNoLists();
-  saveAndRender();
+  renderActiveList();
+  save();
 }
 
 function submitTodoForm(e) {
@@ -183,7 +185,8 @@ function submitTodoForm(e) {
 function changeActiveList(e) {
   if (e.target.dataset.id) {
     activeListId = e.target.dataset.id;
-    saveAndRender();
+    save();
+    renderActiveList();
   }
 }
 
@@ -240,8 +243,8 @@ function deleteActiveList() {
     if (list.id !== activeListId) return;
     removeElementInAnimation(getElementByObj(list));
     lists.splice(listIndex, 1);
-    save();
   });
+  save();
   toggleNoLists();
   renderActiveList();
 }
@@ -253,7 +256,8 @@ const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
 let activeListId =
   localStorage.getItem(LOCAL_ACTIVE_LIST_ID_KEY) || lists[0].id;
 
-saveAndRender();
+save();
+render();
 listForm.addEventListener("submit", submitListForm);
 todoForm.addEventListener("submit", submitTodoForm);
 listsWrapper.addEventListener("click", changeActiveList);
