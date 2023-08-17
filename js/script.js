@@ -60,12 +60,17 @@ function toggleNoTodos(list) {
   todosWrapper.classList.toggle("no-todos-wrapper", list.todos.length === 0);
 }
 
+function toggleNoLists() {
+  listsWrapper.classList.toggle("no-lists-wrapper", lists.length === 0);
+}
+
 function renderLists() {
   listsWrapper.innerHTML = "";
   lists.forEach((list) => {
     const listElement = createListElement(list);
     listsWrapper.append(listElement);
   });
+  toggleNoLists();
 }
 
 function renderActiveList() {
@@ -157,6 +162,7 @@ function submitListForm(e) {
   lists.push(list);
   activeListId = list.id;
   listInput.value = "";
+  toggleNoLists();
   saveAndRender();
 }
 
@@ -236,6 +242,7 @@ function deleteActiveList() {
     lists.splice(listIndex, 1);
     save();
   });
+  toggleNoLists();
   renderActiveList();
 }
 
