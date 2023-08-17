@@ -12,7 +12,6 @@ const activeListHeading = document.querySelector("[data-active-list-heading]");
 const clearDoneButton = document.querySelector("[data-clear-done-button]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
 const todosBox = document.querySelector("[data-todos-box]");
-const noListSelected = document.querySelector("[data-no-list-selected]");
 const scrollIntoViewOptions = { behavior: "smooth", block: "nearest" };
 
 function save() {
@@ -75,25 +74,19 @@ function renderLists() {
 
 function renderActiveList() {
   const activeList = getActiveList();
-  if (activeList) {
-    [...listsWrapper.children].forEach((listElement) => {
-      listElement.classList.toggle(
-        "active-list",
-        activeList.id === listElement.dataset.id
-      );
-    });
-    const listElement = getElementByObj({ id: activeListId });
-    activeListHeading.textContent = activeList.name;
-    renderTodos(activeList);
-    setTimeout(() => {
-      listElement.scrollIntoView(scrollIntoViewOptions);
-    }, 0);
-    todosBox.classList.remove("hidden");
-    noListSelected.classList.add("hidden");
-  } else {
-    todosBox.classList.add("hidden");
-    noListSelected.classList.remove("hidden");
-  }
+  const noActiveList = typeof activeList !== "object";
+  todosBox.classList.toggle("no-active-list-box", noActiveList);
+  if (noActiveList) return;
+  [...listsWrapper.children].forEach((listElement) => {
+    const isActiveList = activeList.id === listElement.dataset.id;
+    listElement.classList.toggle("active-list", isActiveList);
+  });
+  const listElement = getElementByObj({ id: activeListId });
+  activeListHeading.textContent = activeList.name;
+  renderTodos(activeList);
+  setTimeout(() => {
+    listElement.scrollIntoView(scrollIntoViewOptions);
+  }, 0);
 }
 
 function renderTodos(list) {

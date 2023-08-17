@@ -81,3 +81,7 @@
   display: flex;
   background-color: var(--bg-primary);
 }
+
+.no-active-list-box .todo-form-wrapper {
+  display: none;
+}
