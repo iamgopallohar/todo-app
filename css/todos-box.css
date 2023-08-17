@@ -63,12 +63,15 @@
   margin-inline: auto;
 }
 
-.no-todos {
+.no-todos-wrapper::before {
+  content: "No Todos Here";
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   animation: in-animation 200ms ease 1 forwards;
   padding: 0.75rem;
   border: 0px solid var(--bg-tertiary);
-  text-align: center;
   font-style: italic;
 }
 

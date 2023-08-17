@@ -56,18 +56,8 @@ function createTodoElement(todo) {
   return todoElement;
 }
 
-function createNoTodoElement() {
-  const element = document.createElement("div");
-  element.classList.add("no-todos");
-  element.textContent = "No Todos Here";
-  return element;
-}
-
-function addNoTodoElement(list) {
-  const noTodosElement = todosWrapper.querySelector(".no-todos");
-  if (list.todos.length === 0 && noTodosElement === null) {
-    todosWrapper.append(createNoTodoElement());
-  }
+function toggleNoTodos(list) {
+  todosWrapper.classList.toggle("no-todos-wrapper", list.todos.length === 0);
 }
 
 function renderLists() {
@@ -102,7 +92,7 @@ function renderTodos(list) {
     const todoElement = createTodoElement(todo);
     todosWrapper.append(todoElement);
   });
-  addNoTodoElement(list);
+  toggleNoTodos(list);
 }
 
 function handleTodoDeleteButton(todoElement) {
@@ -113,7 +103,7 @@ function handleTodoDeleteButton(todoElement) {
     const list = getActiveList();
     list.todos = list.todos.filter((todo) => todo.id !== todoId);
     save();
-    createNoTodoElement(list);
+    toggleNoTodos(list);
   });
 }
 
@@ -176,8 +166,7 @@ function submitTodoForm(e) {
   const todo = createTodo(todoInput.value);
   getActiveList().todos.push(todo);
   todosWrapper.append(createTodoElement(todo));
-  let noTodosElement = todosWrapper.querySelector(".no-todos");
-  if (noTodosElement) noTodosElement.remove();
+  toggleNoTodos(getActiveList());
   todoInput.value = "";
   save();
   setTimeout(() => {
@@ -200,7 +189,7 @@ function clearDoneTasks() {
     removeElementInAnimation(todoElement);
   });
   list.todos = list.todos.filter((todo) => !todo.done);
-  addNoTodoElement(list);
+  toggleNoTodos(list);
   save();
 }
 
