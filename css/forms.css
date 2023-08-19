@@ -24,7 +24,7 @@
 }
 
 .add-input {
-  border: 1px solid transparent;
+  border: none;
   padding: 0.5em 1em;
   width: 100%;
 }
@@ -67,17 +67,16 @@
 
 /* todo form */
 .todo-form-wrapper {
-  width: calc(100% - 1rem);
-  position: absolute;
+  width: 100%;
+  position: sticky;
   bottom: 0;
   display: flex;
   justify-content: center;
-  right: 1rem;
-  background-image: linear-gradient(transparent, var(--bg-primary) 50%);
+  /* background-image: linear-gradient(transparent, var(--bg-primary) 50%); */
 }
 
 .todo-form {
-  width: calc(var(--max-width) - 2rem);
+  width: calc(var(--max-width) - 2 * (1rem + 0.75rem - 2px));
   display: flex;
   background-color: var(--bg-primary);
 }

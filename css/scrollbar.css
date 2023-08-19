@@ -1,20 +1,20 @@
-/* .todos-list-content */
-.todos-list-content::-webkit-scrollbar {
+/* .todos-box */
+.todos-box::-webkit-scrollbar {
   width: 1rem;
 }
 
-.todos-list-content::-webkit-scrollbar-track {
+.todos-box::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-.todos-list-content::-webkit-scrollbar-thumb {
+.todos-box::-webkit-scrollbar-thumb {
   background: var(--scrollbar-bg);
   border: 0.25rem solid transparent;
   background-clip: content-box;
   border-radius: 100vmax;
 }
 
-.todos-list-content::-webkit-scrollbar-thumb:hover {
+.todos-box::-webkit-scrollbar-thumb:hover {
   background-color: var(--text-secondary);
 }
 

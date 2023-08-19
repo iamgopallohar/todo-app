@@ -2,6 +2,7 @@
   --max-width: 500px;
   width: 100%;
   height: 100%;
+  overflow: auto;
   position: relative;
 }
 
@@ -30,15 +31,6 @@
   }
 }
 
-.todos-list-content {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  position: absolute;
-  inset: 0;
-  padding-bottom: calc(4.5rem + 4px);
-}
-
 .list-header {
   width: var(--max-width);
   margin-inline: auto;
@@ -54,10 +46,6 @@
   width: var(--max-width);
   margin-inline: auto;
   list-style: none;
-}
-
-.no-active-list-box .todos-list-content {
-  display: none;
 }
 
 .no-todos-wrapper::before {
@@ -101,4 +89,8 @@
 
 .list-button-wrapper button:focus-visible {
   border-color: var(--border-color-active);
+}
+
+.no-active-list-box > * {
+  display: none;
 }
