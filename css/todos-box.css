@@ -4,6 +4,7 @@
   height: 100%;
   overflow: auto;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 .no-active-list-box {

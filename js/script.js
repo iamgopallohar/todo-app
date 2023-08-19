@@ -171,7 +171,10 @@ function submitTodoForm(e) {
   todoInput.value = "";
   save();
   setTimeout(() => {
-    getElementByObj(todo).scrollIntoView(scrollIntoViewOptions);
+    todosBox.scrollTop =
+      todosBox.scrollHeight -
+      todosBox.offsetHeight -
+      todosWrapper.nextElementSibling.offsetHeight;
   }, 0);
 }
 

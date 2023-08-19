@@ -72,7 +72,7 @@
   bottom: 0;
   display: flex;
   justify-content: center;
-  /* background-image: linear-gradient(transparent, var(--bg-primary) 50%); */
+  background-image: linear-gradient(transparent, var(--bg-primary) 60%);
 }
 
 .todo-form {
