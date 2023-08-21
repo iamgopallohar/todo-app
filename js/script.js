@@ -1,6 +1,7 @@
 const LOCAL_LISTS_KEY = "todo-lists";
 const LOCAL_ACTIVE_LIST_ID_KEY = "active-todo-list-id";
 
+const main = document.querySelector(".main");
 const listsWrapper = document.querySelector("[data-lists-wrapper]");
 const todoTemplate = document.querySelector("[data-todo-template]");
 const todosWrapper = document.querySelector("[data-todos-wrapper]");
@@ -12,6 +13,10 @@ const activeListHeading = document.querySelector("[data-active-list-heading]");
 const clearDoneButton = document.querySelector("[data-clear-done-button]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
 const todosBox = document.querySelector("[data-todos-box]");
+const navButton = document.querySelector("[data-nav-button]");
+const dataScrollListContent = document.querySelector(
+  "[data-scroll-list-content]"
+);
 const scrollIntoViewOptions = { behavior: "smooth", block: "nearest" };
 
 function save() {
@@ -87,6 +92,7 @@ function renderActiveList() {
   setTimeout(() => {
     listElement.scrollIntoView(scrollIntoViewOptions);
   }, 0);
+  main.classList.remove("show-lists");
 }
 
 function renderTodos(list) {
@@ -171,9 +177,9 @@ function submitTodoForm(e) {
   todoInput.value = "";
   save();
   setTimeout(() => {
-    todosBox.scrollTop =
-      todosBox.scrollHeight -
-      todosBox.offsetHeight -
+    dataScrollListContent.scrollTop =
+      dataScrollListContent.scrollHeight -
+      dataScrollListContent.offsetHeight -
       todosWrapper.nextElementSibling.offsetHeight;
   }, 0);
 }
@@ -259,3 +265,6 @@ todoForm.addEventListener("submit", submitTodoForm);
 listsWrapper.addEventListener("click", changeActiveList);
 clearDoneButton.addEventListener("click", clearDoneTasks);
 deleteListButton.addEventListener("click", deleteActiveList);
+navButton.addEventListener("click", () => {
+  main.classList.toggle("show-lists");
+});

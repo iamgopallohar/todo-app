@@ -13,7 +13,7 @@
 }
 
 body {
-  min-height: 100svh;
+  height: 100svh;
   font-family: var(--font-primary);
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -22,4 +22,5 @@ body {
 main {
   height: 100svh;
   display: flex;
+  --nav-height: calc(3rem + 1px);
 }

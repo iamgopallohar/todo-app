@@ -69,7 +69,7 @@
 .todo-form-wrapper {
   width: 100%;
   position: sticky;
-  bottom: 0;
+  bottom: 0px;
   display: flex;
   justify-content: center;
   background-image: linear-gradient(transparent, var(--bg-primary) 60%);
@@ -81,6 +81,8 @@
   background-color: var(--bg-primary);
 }
 
-.no-active-list-box .todo-form-wrapper {
-  display: none;
+@media screen and (max-width: 768px) {
+  .todo-form {
+    width: 100%;
+  }
 }

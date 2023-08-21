@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/lists-box.css" />
     <link rel="stylesheet" href="css/todos-box.css" />
+    <link rel="stylesheet" href="css/list-nav.css" />
     <link rel="stylesheet" href="css/todo.css" />
     <link rel="stylesheet" href="css/forms.css" />
     <link rel="stylesheet" href="css/scrollbar.css" />
@@ -23,7 +24,7 @@
     <title>Todo App</title>
   </head>
   <body>
-    <main>
+    <main class="main">
       <div class="lists-box">
         <div class="lists-heading">
           <h1>Todos Lists</h1>
@@ -45,31 +46,40 @@
         </div>
       </div>
       <div class="todos-box" data-todos-box>
-        <div class="list-header">
-          <h2 class="active-list-heading" data-active-list-heading></h2>
+        <div class="list-nav-wrapper">
+          <nav class="list-nav">
+            <button class="list-nav-button" data-nav-button>
+              <span></span><span></span><span></span>
+            </button>
+          </nav>
         </div>
-        <ol class="todos-wrapper" data-todos-wrapper></ol>
-        <div class="list-button-wrapper">
-          <button class="delete-list-button" data-delete-list-button>
-            Delete List
-          </button>
-          <button class="clear-done-button" data-clear-done-button>
-            Clear Completed Tasks
-          </button>
-        </div>
-        <div class="todo-form-wrapper add-form-wrapper">
-          <form action="" class="todo-form add-form" data-todo-form>
-            <input
-              type="text"
-              name="todo-input"
-              class="todo-input add-input"
-              id="todo-input"
-              autocapitalize="none"
-              autocomplete="off"
-              data-todo-input
-            />
-            <button type="submit" class="add-todo-button add-button"></button>
-          </form>
+        <div class="scrolling-list-content" data-scroll-list-content>
+          <div class="list-header">
+            <h2 class="active-list-heading" data-active-list-heading></h2>
+          </div>
+          <ol class="todos-wrapper" data-todos-wrapper></ol>
+          <div class="list-button-wrapper">
+            <button class="delete-list-button" data-delete-list-button>
+              Delete List
+            </button>
+            <button class="clear-done-button" data-clear-done-button>
+              Clear Completed Tasks
+            </button>
+          </div>
+          <div class="todo-form-wrapper add-form-wrapper">
+            <form action="" class="todo-form add-form" data-todo-form>
+              <input
+                type="text"
+                name="todo-input"
+                class="todo-input add-input"
+                id="todo-input"
+                autocapitalize="none"
+                autocomplete="off"
+                data-todo-input
+              />
+              <button type="submit" class="add-todo-button add-button"></button>
+            </form>
+          </div>
         </div>
       </div>
     </main>
