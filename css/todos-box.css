@@ -21,7 +21,6 @@
   font-size: 1.5em;
   font-family: var(--font-secondary);
   animation: in-animation 200ms ease 1 forwards;
-  font-style: italic;
   width: 100%;
   height: calc(100% - var(--nav-height));
   display: flex;
@@ -66,7 +65,6 @@
   animation: in-animation 200ms ease 1 forwards;
   padding: 0.75rem;
   border: 0px solid var(--bg-tertiary);
-  font-style: italic;
   font-family: var(--font-secondary);
 }
 

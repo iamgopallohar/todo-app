@@ -35,7 +35,6 @@
   content: "No Lists Here";
   display: flex;
   align-items: center;
-  font-style: italic;
   font-family: var(--font-secondary);
   padding: var(--list-padding-y) var(--list-padding-x);
   min-height: calc(
