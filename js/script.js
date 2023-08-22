@@ -135,7 +135,7 @@ function handleTodoEditButton({ todo, todoElement }) {
   editButton.addEventListener("click", () => {
     if (contentElement.contentEditable === "false") {
       contentElement.contentEditable = "true";
-      contentElement.focus();
+      focusEditableDivAtEnd(contentElement);
     } else {
       saveEditingTodo(contentElement, todo);
     }
@@ -249,6 +249,21 @@ function deleteActiveList() {
   save();
   toggleNoLists();
   renderActiveList();
+}
+
+function focusEditableDivAtEnd(editableDiv) {
+  // from chat gpt
+  const textContent = editableDiv.textContent;
+  editableDiv.textContent = " ";
+  editableDiv.focus();
+  editableDiv.textContent = textContent;
+
+  const range = document.createRange();
+  const selection = window.getSelection();
+  range.selectNodeContents(editableDiv);
+  range.collapse(false);
+  selection.removeAllRanges();
+  selection.addRange(range);
 }
 
 // execution
