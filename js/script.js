@@ -9,6 +9,7 @@ const listForm = document.querySelector("[data-list-form]");
 const listInput = document.querySelector("[data-list-input]");
 const todoForm = document.querySelector("[data-todo-form]");
 const todoInput = document.querySelector("[data-todo-input]");
+const navActiveListSpan = document.querySelector("[data-nav-active-list-span]");
 const activeListHeading = document.querySelector("[data-active-list-heading]");
 const clearDoneButton = document.querySelector("[data-clear-done-button]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
@@ -88,6 +89,7 @@ function renderActiveList() {
   });
   const listElement = getElementByObj({ id: activeListId });
   activeListHeading.textContent = activeList.name;
+  navActiveListSpan.textContent = activeList.name;
   renderTodos(activeList);
   setTimeout(() => {
     listElement.scrollIntoView(scrollIntoViewOptions);
@@ -273,6 +275,13 @@ const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
 let activeListId =
   localStorage.getItem(LOCAL_ACTIVE_LIST_ID_KEY) || lists[0].id;
 
+const headingObserver = new IntersectionObserver((entries) => {
+  navActiveListSpan.classList.toggle(
+    "nav-active-list-span-transparent",
+    entries[0].isIntersecting
+  );
+});
+
 save();
 render();
 listForm.addEventListener("submit", submitListForm);
@@ -283,3 +292,4 @@ deleteListButton.addEventListener("click", deleteActiveList);
 navButton.addEventListener("click", () => {
   main.classList.toggle("show-lists");
 });
+headingObserver.observe(activeListHeading);
