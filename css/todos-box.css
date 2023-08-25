@@ -20,7 +20,6 @@
   content: "No List Selected";
   font-size: 1.5em;
   font-family: var(--font-secondary);
-  animation: in-animation 200ms ease 1 forwards;
   width: 100%;
   height: calc(100% - var(--nav-height));
   display: flex;
@@ -42,12 +41,8 @@
 .list-header {
   width: var(--max-width);
   margin-inline: auto;
-  padding-block: 1rem;
+  padding-block: 1.5rem;
   font-family: var(--font-secondary);
-}
-
-.active-list-heading {
-  display: inline;
 }
 
 .todos-wrapper {
@@ -62,9 +57,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  animation: in-animation 200ms ease 1 forwards;
   padding: 0.75rem;
-  border: 0px solid var(--bg-tertiary);
   font-family: var(--font-secondary);
 }
 
@@ -75,11 +68,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  transition: margin 200ms ease;
+  transition: margin var(--transition-duration)
+    var(--transition-timing-function);
 }
 
 .list-button-wrapper button {
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   border: 1px solid transparent;
   background-color: transparent;
   font: inherit;
@@ -95,7 +89,7 @@
 }
 
 .list-button-wrapper button:focus-visible {
-  border-color: var(--border-color-active);
+  border-color: var(--accent-color);
 }
 
 .no-active-list-box > *:not(.list-nav-wrapper) {
@@ -114,7 +108,8 @@
     left: -101%;
     top: var(--nav-height);
     z-index: 200;
-    transition: left 200ms ease;
+    transition: left var(--transition-duration)
+      var(--transition-timing-function);
   }
 
   .show-lists .lists-box {

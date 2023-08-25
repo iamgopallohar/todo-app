@@ -8,10 +8,12 @@
   border: 2px solid var(--border-color-primary);
   border-radius: 0.25em;
   overflow: hidden;
+  transition: border-color var(--transition-duration)
+    var(--transition-timing-function);
 }
 
 .add-form:focus-within {
-  border-color: var(--border-color-active);
+  border-color: var(--accent-color);
 }
 
 .add-input,
@@ -43,10 +45,6 @@
   border-radius: 0.25rem;
 }
 
-.add-button:focus-visible {
-  box-shadow: inset 0px 0px 0px 2px var(--border-color-active);
-}
-
 .add-button::before,
 .add-button::after {
   content: "";
@@ -62,7 +60,11 @@
 
 .add-form:focus-within .add-button::before,
 .add-form:focus-within .add-button::after {
-  background-color: var(--border-color-active);
+  background-color: var(--accent-color);
+}
+
+.add-button:focus-visible {
+  transform: scale(1.25);
 }
 
 /* todo form */
@@ -72,7 +74,7 @@
   bottom: 0px;
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(transparent, var(--bg-primary) 60%);
+  background-image: linear-gradient(transparent, var(--bg-primary) 40%);
 }
 
 .todo-form {

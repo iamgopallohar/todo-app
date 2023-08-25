@@ -4,10 +4,12 @@
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  background-color: var(--bg-tertiary);
+  background-color: var(--bg-secondary);
   border-radius: 0.25rem;
-  transition: margin 200ms ease;
-  animation: in-animation 200ms ease 1 forwards;
+  transition: margin var(--transition-duration)
+    var(--transition-timing-function);
+  animation: in-animation var(--transition-duration)
+    var(--transition-timing-function) 1 forwards;
 }
 
 .todo:not(:first-of-type) {
@@ -55,7 +57,10 @@
   height: var(--size);
   border: 2px solid var(--text-secondary);
   border-radius: 100%;
-  transition: border-radius 200ms ease, width 200ms ease, transform 200ms ease;
+  transition: border-radius var(--transition-duration)
+      var(--transition-timing-function),
+    width var(--transition-duration) var(--transition-timing-function),
+    transform var(--transition-duration) var(--transition-timing-function);
 }
 
 [data-done="true"] .todo-checkbox::before {
@@ -72,14 +77,13 @@
   margin-right: auto;
   position: relative;
   outline: none;
-  overflow-wrap: break-word;
 }
 
 .todo-content[contenteditable="true"]::after {
   content: "";
   width: calc(100% - 0.5rem);
   height: 2px;
-  background-color: currentColor;
+  background-color: var(--accent-color);
   position: absolute;
   inset: 0.25rem;
   top: 100%;
@@ -103,7 +107,7 @@
   background-repeat: repeat;
   background-size: 100% 1.5em;
   width: 0%;
-  transition: width 200ms ease;
+  transition: width var(--transition-duration) var(--transition-timing-function);
   pointer-events: none;
 }
 
@@ -136,7 +140,7 @@
 .todo-checkbox:focus-visible,
 .edit-todo-button:focus-visible,
 .delete-todo-button:focus-visible {
-  border-color: var(--border-color-active);
+  border-color: var(--accent-color);
 }
 
 .todo-icon {

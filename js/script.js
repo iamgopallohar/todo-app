@@ -222,7 +222,7 @@ function removeElementInAnimation(element) {
   if (!nextElement) {
     nextElement = element.parentElement.nextElementSibling;
   }
-  if (nextElement) {
+  if ((nextElement, element.parentElement.children.length !== 1)) {
     const nextElementStyles = getComputedStyle(nextElement);
     const occupiedSpace =
       purgeNumber(elementStyles.marginTop) +

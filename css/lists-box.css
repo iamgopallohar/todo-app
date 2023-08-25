@@ -1,5 +1,5 @@
 .lists-box {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   height: 100%;
   width: 300px;
   flex-shrink: 0;
@@ -9,14 +9,18 @@
 
 .lists-heading {
   font-family: var(--font-secondary);
-  padding-inline: 1rem;
   flex-shrink: 0;
+  min-height: var(--nav-height);
 }
 
 .lists-heading h1 {
-  border-bottom: 1px solid var(--border-color-primary);
-  padding-block: 1rem;
-  text-align: center;
+  border-bottom: 1px solid var(--bg-secondary);
+  font-size: 1.25rem;
+  font-weight: normal;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lists-wrapper {
@@ -44,8 +48,6 @@
 }
 
 .list {
-  --background-color: var(--bg-secondary);
-  background-color: var(--background-color);
   min-height: calc(
     var(--list-line-height) +
       (2 * (var(--list-padding-y) + var(--list-border-width)))
@@ -55,36 +57,21 @@
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
-  position: relative;
+  text-overflow: ellipsis;
   outline: transparent;
   border: var(--list-border-width) solid transparent;
   background-clip: padding-box;
-  transition: margin 200ms ease;
+  transition: margin var(--transition-duration) ease;
 }
 
 .list:hover {
-  --background-color: var(--hover-bg);
+  background-color: var(--hover-bg);
 }
 
 .list.active-list {
-  --background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
 }
 
 .list:focus-visible {
-  border-color: var(--border-color-active);
-}
-
-.list::after {
-  content: "";
-  background-image: linear-gradient(
-    90deg,
-    transparent,
-    var(--background-color) 75%
-  );
-  width: 3em;
-  height: 1.5em;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+  border-color: var(--accent-color);
 }

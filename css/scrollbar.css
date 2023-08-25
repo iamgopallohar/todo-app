@@ -1,40 +1,33 @@
 @media (hover: hover) {
-  /* .scrolling-list-content */
-  .scrolling-list-content::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 1rem;
   }
 
-  .scrolling-list-content::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background-color: transparent;
   }
 
-  .scrolling-list-content::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-bg);
     border: 0.25rem solid transparent;
     background-clip: content-box;
     border-radius: 100vmax;
   }
 
-  .scrolling-list-content::-webkit-scrollbar-thumb:hover {
-    background-color: var(--text-secondary);
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-bg-hover);
   }
 
   /* .lists-wrapper */
-  .lists-wrapper::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-
-  .lists-wrapper::-webkit-scrollbar-track {
+  .lists-wrapper::-webkit-scrollbar-thumb {
     background-color: transparent;
   }
 
-  .lists-wrapper:hover::-webkit-scrollbar-thumb,
-  .lists-wrapper:focus-within::-webkit-scrollbar-thumb {
+  .lists-wrapper:hover::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-bg);
-    border-radius: 100vmax;
   }
 
   .lists-wrapper::-webkit-scrollbar-thumb:hover {
-    background-color: var(--text-secondary);
+    background-color: var(--scrollbar-bg-hover);
   }
 }

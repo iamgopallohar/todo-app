@@ -2,8 +2,6 @@
   background-color: var(--bg-primary);
   border-bottom: 1px solid var(--bg-secondary);
   height: var(--nav-height, 3rem);
-  position: sticky;
-  top: 0;
   z-index: 100;
 }
 
@@ -36,7 +34,7 @@
 }
 
 .list-nav-button:focus-visible {
-  border-color: var(--border-color-active);
+  border-color: var(--accent-color);
 }
 
 .list-nav-button span {
@@ -48,7 +46,8 @@
 
 .nav-active-list-span {
   opacity: 1;
-  transition: opacity 100ms ease;
+  transition: opacity var(--transition-duration)
+    var(--transition-timing-function);
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -56,7 +55,8 @@
   padding-inline: 1rem;
 }
 
-.nav-active-list-span-transparent {
+.nav-active-list-span-transparent,
+.no-active-list-box .nav-active-list-span {
   opacity: 0;
 }
 
