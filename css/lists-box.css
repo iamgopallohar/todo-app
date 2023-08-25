@@ -1,7 +1,8 @@
 .lists-box {
+  --content-width: min(var(--todos-width), 100%);
   background-color: var(--bg-primary);
   height: 100%;
-  width: 300px;
+  width: var(--lists-box-width);
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -28,11 +29,12 @@
   --list-padding-x: 1em;
   --list-line-height: 1.5em;
   --list-border-width: 1px;
-  width: 100%;
+  width: var(--content-width);
+  margin-inline: auto;
   height: 100%;
   overflow: auto;
   list-style: none;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .no-lists-wrapper::before {

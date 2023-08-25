@@ -24,5 +24,7 @@ body {
 main {
   height: 100svh;
   display: flex;
-  --nav-height: calc(4rem + 1px);
+  --nav-height: calc(3.5rem + 1px);
+  --lists-box-width: 275px;
+  --todos-width: 550px;
 }

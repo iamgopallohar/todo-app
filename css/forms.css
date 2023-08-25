@@ -68,23 +68,23 @@
 }
 
 /* todo form */
+.list-form {
+  width: var(--content-width);
+  margin-inline: auto;
+}
+
 .todo-form-wrapper {
   width: 100%;
   position: sticky;
   bottom: 0px;
   display: flex;
   justify-content: center;
+  padding: 1rem 0rem;
   background-image: linear-gradient(transparent, var(--bg-primary) 40%);
 }
 
 .todo-form {
-  width: calc(var(--max-width) - 2 * (1rem + 0.75rem - 2px));
+  width: var(--max-width);
   display: flex;
   background-color: var(--bg-primary);
-}
-
-@media screen and (max-width: 768px) {
-  .todo-form {
-    width: 100%;
-  }
 }
