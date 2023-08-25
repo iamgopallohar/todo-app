@@ -158,7 +158,7 @@ function render() {
 
 function submitListForm(e) {
   e.preventDefault();
-  if (listInput.value === "" || listInput.value === null) return;
+  if (listInput.value === null || listInput.value.trim() === "") return;
   const list = createList(listInput.value);
   lists.push(list);
   listsWrapper.append(createListElement(list));
@@ -171,7 +171,7 @@ function submitListForm(e) {
 
 function submitTodoForm(e) {
   e.preventDefault();
-  if (todoInput.value === "" || todoInput.value === null) return;
+  if (todoInput.value === null || todoInput.value.trim() === "") return;
   const todo = createTodo(todoInput.value);
   getActiveList().todos.push(todo);
   todosWrapper.append(createTodoElement(todo));
