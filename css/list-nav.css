@@ -13,9 +13,8 @@
   align-items: center;
 }
 
-.list-nav-button {
-  /* display: flex; */
-  display: none;
+.list-nav-button,
+.theme-button {
   background-color: transparent;
   outline: transparent;
   font-size: inherit;
@@ -23,14 +22,45 @@
   color: inherit;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  width: 2rem;
-  height: 2rem;
+  --size: 2rem;
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.list-nav-button {
+  /* display: flex; */
+  display: none;
   position: relative;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  cursor: pointer;
   margin-left: auto;
+}
+
+.theme-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-button svg {
+  fill: currentColor;
+  --size: 100%;
+  width: var(--size);
+  height: var(--size);
+}
+
+[data-theme="dark"] .light-theme-icon,
+[data-theme="light"] .dark-theme-icon,
+:root .dark-theme-icon {
+  display: none;
+}
+
+[data-theme="dark"] .dark-theme-icon,
+[data-theme="light"] .light-theme-icon {
+  display: block;
 }
 
 .list-nav-button:focus-visible {

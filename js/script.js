@@ -1,6 +1,7 @@
 const LOCAL_LISTS_KEY = "todo-lists";
 const LOCAL_ACTIVE_LIST_ID_KEY = "active-todo-list-id";
-
+const LOCAL_THEME_KEY = "todo-lists-theme";
+const htmlElement = document.querySelector("html");
 const main = document.querySelector(".main");
 const listsWrapper = document.querySelector("[data-lists-wrapper]");
 const todoTemplate = document.querySelector("[data-todo-template]");
@@ -15,6 +16,7 @@ const clearDoneButton = document.querySelector("[data-clear-done-button]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
 const todosBox = document.querySelector("[data-todos-box]");
 const navButton = document.querySelector("[data-nav-button]");
+const themeButton = document.querySelector("[data-theme-button]");
 const dataScrollListContent = document.querySelector(
   "[data-scroll-list-content]"
 );
@@ -268,6 +270,20 @@ function focusEditableDivAtEnd(editableDiv) {
   selection.addRange(range);
 }
 
+function setTheme(theme) {
+  htmlElement.dataset.theme = theme;
+}
+
+function saveCurrentTheme() {
+  localStorage.setItem(LOCAL_THEME_KEY, htmlElement.dataset.theme);
+}
+
+function switchTheme() {
+  const currentTheme = htmlElement.dataset.theme;
+  setTheme(currentTheme === "dark" ? "light" : "dark");
+  saveCurrentTheme();
+}
+
 // execution
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
   createList("My List"),
@@ -293,3 +309,12 @@ navButton.addEventListener("click", () => {
   main.classList.toggle("show-lists");
 });
 headingObserver.observe(activeListHeading);
+// theme
+const localTheme = localStorage.getItem(LOCAL_THEME_KEY);
+if (localTheme) {
+  setTheme(localTheme);
+} else {
+  const isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+  isDarkTheme.matches ? setTheme("dark") : setTheme("light");
+}
+themeButton.addEventListener("click", switchTheme);
