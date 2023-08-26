@@ -16,6 +16,10 @@
   scroll-behavior: smooth;
 }
 
+.active-list-heading {
+  color: var(--text-secondary);
+}
+
 .no-active-list-box::after {
   content: "No List Selected";
   font-size: 1.5em;
@@ -25,17 +29,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@keyframes in-animation {
-  0% {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0rem);
-  }
 }
 
 .list-header {

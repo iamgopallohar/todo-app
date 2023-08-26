@@ -1,4 +1,18 @@
-:root {
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-primary: hsl(0, 0%, 100%);
+  --bg-secondary: hsl(225, 8%, 95%);
+  --text-primary: hsl(225, 25%, 5%);
+  --text-secondary: hsl(225, 25%, 25%);
+  --hover-bg: hsl(0, 0%, 97%);
+  --scrollbar-bg: hsl(225, 10%, 70%);
+  --scrollbar-bg-hover: hsl(225, 15%, 50%);
+  --border-color-primary: hsl(225, 20%, 50%);
+  --accent-color: hsl(225, 70%, 50%);
+}
+
+[data-theme="dark"] {
   color-scheme: dark;
   --bg-primary: hsl(225, 8%, 8%);
   --bg-secondary: hsl(225, 10%, 16%);
@@ -8,5 +22,5 @@
   --scrollbar-bg: hsl(225, 10%, 50%);
   --scrollbar-bg-hover: hsl(225, 10%, 65%);
   --border-color-primary: hsl(225, 15%, 50%);
-  --accent-color: hsl(210, 75%, 50%);
+  --accent-color: hsl(225, 70%, 60%);
 }
