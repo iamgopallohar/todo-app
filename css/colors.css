@@ -1,3 +1,8 @@
+:root {
+  --bg-light: hsl(0, 0%, 100%);
+  --bg-dark: hsl(225, 8%, 8%);
+}
+
 :root,
 [data-theme="light"] {
   color-scheme: light;

@@ -17,6 +17,9 @@ const deleteListButton = document.querySelector("[data-delete-list-button]");
 const todosBox = document.querySelector("[data-todos-box]");
 const navButton = document.querySelector("[data-nav-button]");
 const themeButton = document.querySelector("[data-theme-button]");
+const themeButtonWrapper = document.querySelector(
+  "[data-theme-button-wrapper]"
+);
 const dataScrollListContent = document.querySelector(
   "[data-scroll-list-content]"
 );
@@ -272,6 +275,7 @@ function focusEditableDivAtEnd(editableDiv) {
 
 function setTheme(theme) {
   htmlElement.dataset.theme = theme;
+  themeButton.dataset.themeButton = theme;
 }
 
 function saveCurrentTheme() {
@@ -280,8 +284,28 @@ function saveCurrentTheme() {
 
 function switchTheme() {
   const currentTheme = htmlElement.dataset.theme;
-  setTheme(currentTheme === "dark" ? "light" : "dark");
-  saveCurrentTheme();
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  createThemeCircle(newTheme);
+}
+
+function createThemeCircle(newTheme) {
+  themeButton.dataset.themeButton = newTheme;
+  const themeCircle = document.createElement("div");
+  themeCircle.classList.add("theme-circle");
+  themeButtonWrapper.append(themeCircle);
+  themeCircle.style.setProperty("--theme-circle-bg", `var(--bg-${newTheme})`);
+  const { x, y } = themeCircle.getBoundingClientRect();
+  const newThemeCircleSize = Math.hypot(x, window.innerHeight - y) + 2;
+  themeCircle.style.setProperty("--size", `${2 * newThemeCircleSize}px`);
+  themeCircle.addEventListener("transitionend", ({ propertyName }) => {
+    if (propertyName === "opacity") {
+      themeCircle.remove();
+    } else if (propertyName === "width") {
+      setTheme(newTheme);
+      saveCurrentTheme();
+      themeCircle.style.setProperty("--opacity", "0");
+    }
+  });
 }
 
 // execution
