@@ -12,6 +12,9 @@ const todoForm = document.querySelector("[data-todo-form]");
 const todoInput = document.querySelector("[data-todo-input]");
 const navActiveListSpan = document.querySelector("[data-nav-active-list-span]");
 const activeListHeading = document.querySelector("[data-active-list-heading]");
+const editActiveListButton = document.querySelector(
+  "[data-edit-active-list-button]"
+);
 const clearDoneButton = document.querySelector("[data-clear-done-button]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
 const todosBox = document.querySelector("[data-todos-box]");
@@ -308,6 +311,17 @@ function createThemeCircle(newTheme) {
   });
 }
 
+function saveEditingList() {
+  activeListHeading.contentEditable = "false";
+  const activeList = getActiveList();
+  activeList.name = activeListHeading.textContent;
+  activeListHeading.textContent = activeList.name;
+  getElementByObj(activeList).textContent = activeList.name;
+  navActiveListSpan.textContent = activeList.name;
+  renderActiveList();
+  save();
+}
+
 // execution
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
   createList("My List"),
@@ -333,6 +347,17 @@ navButton.addEventListener("click", () => {
   main.classList.toggle("show-lists");
 });
 headingObserver.observe(activeListHeading);
+editActiveListButton.addEventListener("click", () => {
+  let editingList = activeListHeading.contentEditable === "true";
+  if (editingList) {
+    saveEditingList();
+  } else {
+    activeListHeading.contentEditable = "true";
+    focusEditableDivAtEnd(activeListHeading);
+  }
+  save();
+});
+
 // theme
 const localTheme = localStorage.getItem(LOCAL_THEME_KEY);
 if (localTheme) {

@@ -83,7 +83,40 @@
         </div>
         <div class="scrolling-list-content" data-scroll-list-content>
           <div class="list-header">
-            <h2 class="active-list-heading" data-active-list-heading></h2>
+            <div class="active-list-heading-wrapper">
+              <h2
+                class="active-list-heading"
+                data-active-list-heading
+                contenteditable="false"
+              ></h2>
+              <button
+                class="edit-active-list-button"
+                data-edit-active-list-button
+              >
+                <svg
+                  class="edit-active-list-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M794-666 666-794l42-42q17-17 42.5-16.5T793-835l43 43q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Z"
+                  />
+                </svg>
+                <svg
+                  class="save-active-list-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M840-683v503q0 24-18 42t-42 18H180q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h503l157 157ZM479.765-245Q523-245 553.5-275.265q30.5-30.264 30.5-73.5Q584-392 553.735-422.5q-30.264-30.5-73.5-30.5Q437-453 406.5-422.735q-30.5 30.264-30.5 73.5Q376-306 406.265-275.5q30.264 30.5 73.5 30.5ZM233-584h358v-143H233v143Z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
           <ol class="todos-wrapper" data-todos-wrapper></ol>
           <div class="list-button-wrapper">

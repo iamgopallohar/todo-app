@@ -16,8 +16,56 @@
   scroll-behavior: smooth;
 }
 
+.active-list-heading-wrapper {
+  font-size: 1.5rem;
+}
+
 .active-list-heading {
   color: var(--text-secondary);
+  display: inline;
+  font-size: inherit;
+  outline: none;
+  border-bottom: 2px solid transparent;
+}
+
+.edit-active-list-button {
+  --size: calc(1.5em);
+  width: var(--size);
+  height: var(--size);
+  background-color: transparent;
+  outline: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.edit-active-list-button svg {
+  fill: var(--text-secondary);
+  --size: 80%;
+  width: var(--size);
+  height: var(--size);
+}
+
+.active-list-heading[contenteditable="true"] {
+  border-bottom-color: var(--accent-color);
+}
+
+.active-list-heading[contenteditable="true"] + button .save-active-list-icon,
+.active-list-heading[contenteditable="false"] + button .edit-active-list-icon {
+  display: block;
+}
+
+.active-list-heading[contenteditable="true"] + button .edit-active-list-icon,
+.active-list-heading[contenteditable="false"] + button .save-active-list-icon {
+  display: none;
 }
 
 .no-active-list-box::after {
