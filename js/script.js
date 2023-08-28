@@ -247,7 +247,7 @@ function removeElementInAnimation(element) {
 }
 
 function getActiveList() {
-  return lists.filter((list) => list.id === activeListId)[0];
+  return lists.find((list) => list.id === activeListId);
 }
 
 function deleteActiveList() {
@@ -321,6 +321,59 @@ function saveEditingList() {
   save();
 }
 
+function handleKeydownOnDocument(e) {
+  // console.log(e.key);
+  if (e.target.closest("[data-lists-wrapper]")) {
+    if (e.key === "ArrowUp" && e.target.previousElementSibling) {
+      e.target.previousElementSibling.focus();
+      e.preventDefault();
+    } else if (e.key === "ArrowDown" && e.target.nextElementSibling) {
+      e.target.nextElementSibling.focus();
+      e.preventDefault();
+    } else if (e.key === "Enter") {
+      changeActiveList(e);
+    }
+  } else if (e.target.dataset.activeListHeading === "" && e.key === "Enter") {
+    e.preventDefault();
+    saveEditingList();
+    e.target.nextElementSibling.focus();
+  } else if (e.target.dataset.todoContent === "" && e.key === "Enter") {
+    e.preventDefault();
+    const todo = getActiveList().todos.find((todo) => {
+      return todo.id === e.target.closest("[data-id]").dataset.id;
+    });
+    saveEditingTodo(e.target, todo);
+    e.target.nextElementSibling.children[0].focus();
+  }
+
+  handleGlobalShortcuts(e);
+}
+
+function handleGlobalShortcuts(e) {
+  if (
+    e.target.tagName.toLowerCase() !== "input" &&
+    e.target.contentEditable !== "true"
+  ) {
+    if (!e.shiftKey && e.key.toLocaleLowerCase() === "l") {
+      e.preventDefault();
+      listInput.focus();
+    } else if (e.shiftKey && e.key.toLocaleLowerCase() === "l") {
+      e.preventDefault();
+      listsWrapper.children[0].focus();
+    } else if (!e.shiftKey && e.key.toLocaleLowerCase() === "t") {
+      e.preventDefault();
+      todoInput.focus();
+    } else if (e.shiftKey && e.key.toLocaleLowerCase() === "t") {
+      e.preventDefault();
+      todosWrapper.children[0].children[0].focus();
+    }
+  } else {
+    if (e.key === "Escape") {
+      e.target.blur();
+    }
+  }
+}
+
 // execution
 const lists = JSON.parse(localStorage.getItem(LOCAL_LISTS_KEY)) || [
   createList("My List"),
@@ -366,3 +419,5 @@ if (localTheme) {
   isDarkTheme.matches ? setTheme("dark") : setTheme("light");
 }
 themeButton.addEventListener("click", switchTheme);
+
+document.addEventListener("keydown", handleKeydownOnDocument);
