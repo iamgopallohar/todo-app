@@ -54,6 +54,7 @@ function createListElement(list) {
   listElement.classList.add("list");
   listElement.tabIndex = 0;
   listElement.dataset.id = list.id;
+  listElement.dataset.list = "";
   listElement.textContent = list.name;
   return listElement;
 }
@@ -323,15 +324,23 @@ function saveEditingList() {
 
 function handleKeydownOnDocument(e) {
   // console.log(e.key);
-  if (e.target.closest("[data-lists-wrapper]")) {
+  if (e.target.dataset.list === "") {
     if (e.key === "ArrowUp" && e.target.previousElementSibling) {
+      e.preventDefault();
       e.target.previousElementSibling.focus();
-      e.preventDefault();
     } else if (e.key === "ArrowDown" && e.target.nextElementSibling) {
-      e.target.nextElementSibling.focus();
       e.preventDefault();
+      e.target.nextElementSibling.focus();
     } else if (e.key === "Enter") {
       changeActiveList(e);
+    }
+  } else if (e.target.dataset.todo === "") {
+    if (e.key === "ArrowUp" && e.target.previousElementSibling) {
+      e.preventDefault();
+      e.target.previousElementSibling.focus();
+    } else if (e.key === "ArrowDown" && e.target.nextElementSibling) {
+      e.preventDefault();
+      e.target.nextElementSibling.focus();
     }
   } else if (e.target.dataset.activeListHeading === "" && e.key === "Enter") {
     e.preventDefault();
@@ -365,7 +374,7 @@ function handleGlobalShortcuts(e) {
       todoInput.focus();
     } else if (e.shiftKey && e.key.toLocaleLowerCase() === "t") {
       e.preventDefault();
-      todosWrapper.children[0].children[0].focus();
+      todosWrapper.children[0].focus();
     }
   } else {
     if (e.key === "Escape") {
