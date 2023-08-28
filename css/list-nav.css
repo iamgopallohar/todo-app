@@ -20,7 +20,7 @@
   font-size: inherit;
   font-family: inherit;
   color: inherit;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 0.25rem;
   --size: 2rem;
   width: var(--size);

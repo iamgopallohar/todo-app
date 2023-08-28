@@ -58,13 +58,15 @@
   transform: rotate(90deg);
 }
 
-.add-form:focus-within .add-button::before,
-.add-form:focus-within .add-button::after {
+.add-button:hover::before,
+.add-button:hover::after {
   background-color: var(--accent-color);
 }
 
-.add-button:focus-visible {
-  transform: scale(1.25);
+.add-button:focus-visible::before,
+.add-button:focus-visible::after {
+  width: 50%;
+  background-color: var(--accent-color);
 }
 
 /* todo form */

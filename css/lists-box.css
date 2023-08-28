@@ -28,7 +28,7 @@
   --list-padding-y: 0.5em;
   --list-padding-x: 1em;
   --list-line-height: 1.5em;
-  --list-border-width: 1px;
+  --list-border-width: 2px;
   width: var(--content-width);
   margin-inline: auto;
   height: 100%;
@@ -62,7 +62,7 @@
   text-overflow: ellipsis;
   outline: transparent;
   border: var(--list-border-width) solid transparent;
-  background-clip: padding-box;
+  /* background-clip: padding-box; */
   transition: margin var(--transition-duration) ease;
 }
 

@@ -1,15 +1,21 @@
 .todo {
-  --button-size: 2rem;
+  --button-size: calc(2rem + 4px);
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  border: 2px solid transparent;
+  padding: 0.25rem;
   background-color: var(--bg-secondary);
   border-radius: 0.25rem;
   transition: margin var(--transition-duration)
     var(--transition-timing-function);
   animation: in-animation var(--transition-duration)
     var(--transition-timing-function) 1 forwards;
+  outline: none;
+}
+
+.todo:focus-visible {
+  border-color: var(--accent-color);
 }
 
 .todo:not(:first-of-type) {
@@ -34,7 +40,7 @@
   font-size: inherit;
   font-family: inherit;
   color: inherit;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 0.25rem;
 }
 
@@ -77,20 +83,16 @@
   margin-right: auto;
   position: relative;
   outline: none;
+  border: 2px solid transparent;
+  border-radius: 0.25rem;
 }
 
-.todo-content[contenteditable="true"]::after {
-  content: "";
-  width: calc(100% - 0.5rem);
-  height: 2px;
-  background-color: var(--border-color-primary);
-  position: absolute;
-  inset: 0.25rem;
-  top: 100%;
+.todo-content[contenteditable="true"] {
+  border-color: var(--border-color-primary);
 }
 
-.todo-content[contenteditable="true"]:focus-visible:after {
-  background-color: var(--accent-color);
+.todo-content[contenteditable="true"]:focus-visible {
+  border-color: var(--accent-color);
 }
 
 .todo-content::before {
