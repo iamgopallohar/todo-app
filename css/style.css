@@ -13,6 +13,7 @@
   --font-secondary: "Raleway", sans-serif;
   --transition-duration: 150ms;
   --transition-timing-function: ease;
+  --radius-primary: 0.4rem;
 }
 
 body {

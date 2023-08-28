@@ -38,7 +38,7 @@
   font-family: inherit;
   color: inherit;
   border: 2px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: var(--radius-primary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -127,7 +127,7 @@
   background-color: transparent;
   font: inherit;
   font-size: inherit;
-  border-radius: 0.25rem;
+  border-radius: var(--radius-primary);
   cursor: pointer;
   color: var(--text-secondary);
   outline: transparent;

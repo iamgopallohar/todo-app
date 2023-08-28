@@ -6,7 +6,7 @@
   border: 2px solid transparent;
   padding: 0.25rem;
   background-color: var(--bg-secondary);
-  border-radius: 0.25rem;
+  border-radius: var(--radius-primary);
   transition: margin var(--transition-duration)
     var(--transition-timing-function);
   animation: in-animation var(--transition-duration)
@@ -41,7 +41,7 @@
   font-family: inherit;
   color: inherit;
   border: 2px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: var(--radius-primary);
 }
 
 .todo-checkbox {
@@ -84,7 +84,7 @@
   position: relative;
   outline: none;
   border: 2px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: var(--radius-primary);
 }
 
 .todo-content[contenteditable="true"] {

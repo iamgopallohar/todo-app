@@ -55,7 +55,7 @@
       (2 * (var(--list-padding-y) + var(--list-border-width)))
   );
   padding: var(--list-padding-y) var(--list-padding-x);
-  border-radius: 0.25em;
+  border-radius: var(--radius-primary);
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;

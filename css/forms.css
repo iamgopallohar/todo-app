@@ -6,7 +6,7 @@
   width: 100%;
   display: flex;
   border: 2px solid var(--border-color-primary);
-  border-radius: 0.25em;
+  border-radius: var(--radius-primary);
   overflow: hidden;
   transition: border-color var(--transition-duration)
     var(--transition-timing-function);
@@ -42,7 +42,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 0.25rem;
+  border-radius: var(--radius-primary);
 }
 
 .add-button::before,

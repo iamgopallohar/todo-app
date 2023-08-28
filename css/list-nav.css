@@ -21,7 +21,7 @@
   font-family: inherit;
   color: inherit;
   border: 2px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: var(--radius-primary);
   --size: 2rem;
   width: var(--size);
   height: var(--size);
