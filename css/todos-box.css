@@ -47,6 +47,10 @@
   vertical-align: middle;
 }
 
+.edit-active-list-button:focus-visible {
+  border-color: var(--accent-color);
+}
+
 .edit-active-list-button svg {
   fill: var(--text-secondary);
   --size: 80%;
@@ -55,6 +59,10 @@
 }
 
 .active-list-heading[contenteditable="true"] {
+  border-bottom-color: var(--border-color-primary);
+}
+
+.active-list-heading[contenteditable="true"]:focus {
   border-bottom-color: var(--accent-color);
 }
 

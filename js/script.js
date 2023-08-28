@@ -318,7 +318,6 @@ function saveEditingList() {
   activeListHeading.textContent = activeList.name;
   getElementByObj(activeList).textContent = activeList.name;
   navActiveListSpan.textContent = activeList.name;
-  renderActiveList();
   save();
 }
 

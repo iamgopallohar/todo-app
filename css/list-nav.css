@@ -69,6 +69,10 @@
   justify-content: center;
 }
 
+.theme-button:focus-visible {
+  border-color: var(--accent-color);
+}
+
 .theme-button svg {
   fill: var(--text-secondary);
   --size: 100%;

@@ -83,10 +83,14 @@
   content: "";
   width: calc(100% - 0.5rem);
   height: 2px;
-  background-color: var(--accent-color);
+  background-color: var(--border-color-primary);
   position: absolute;
   inset: 0.25rem;
   top: 100%;
+}
+
+.todo-content[contenteditable="true"]:focus-visible:after {
+  background-color: var(--accent-color);
 }
 
 .todo-content::before {
