@@ -11,7 +11,7 @@
 :root {
   --font-primary: "Nunito", sans-serif;
   --font-secondary: "Raleway", sans-serif;
-  --transition-duration: 150ms;
+  --transition-duration: 300ms;
   --transition-timing-function: ease;
   --radius-primary: 0.4rem;
 }

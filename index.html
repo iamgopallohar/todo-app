@@ -148,7 +148,27 @@
 
     <template data-todo-template>
       <li class="todo" tabindex="0" data-todo>
-        <button class="todo-checkbox" data-todo-button="checkbox"></button>
+        <!-- button -->
+        <button class="todo-checkbox" data-todo-button="checkbox">
+          <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <circle
+              cx="16"
+              cy="16"
+              r="10"
+              transform="rotate(-180 16 16)"
+              stroke-width="2"
+              fill="transparent"
+              class="todo-checkbox-circle"
+            />
+            <path
+              d="M6 16l8 8 12-12"
+              stroke-width="2"
+              fill="transparent"
+              class="todo-checkbox-tick"
+            />
+          </svg>
+        </button>
+        <!-- button -->
         <div
           class="todo-content"
           contenteditable="false"

@@ -56,25 +56,32 @@
   position: relative;
 }
 
-.todo-checkbox::before {
-  content: "";
-  --size: 65%;
-  width: var(--size);
-  height: var(--size);
-  border: 2px solid var(--text-secondary);
-  border-radius: 100%;
-  transition: border-radius var(--transition-duration)
-      var(--transition-timing-function),
-    width var(--transition-duration) var(--transition-timing-function),
-    transform var(--transition-duration) var(--transition-timing-function);
+.todo-checkbox svg {
+  stroke: currentColor;
 }
 
-[data-done="true"] .todo-checkbox::before {
-  width: calc(var(--size) / 2);
-  border-width: 0px 2px 2px 0px;
-  border-radius: 0;
-  --translate: -10%;
-  transform: rotate(45deg) translate(var(--translate), var(--translate));
+.todo-checkbox .todo-checkbox-tick {
+  stroke-dasharray: 30px;
+  stroke-dashoffset: 30px;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.todo-checkbox .todo-checkbox-circle {
+  stroke-dasharray: 65px;
+  stroke-dashoffset: 0;
+  transition: all var(--transition-duration) var(--transition-duration)
+    var(--transition-timing-function);
+}
+
+.todo[data-done="true"] .todo-checkbox .todo-checkbox-tick {
+  stroke-dashoffset: 0px;
+  transition: all var(--transition-duration) var(--transition-duration)
+    var(--transition-timing-function);
+}
+
+.todo[data-done="true"] .todo-checkbox .todo-checkbox-circle {
+  stroke-dashoffset: 65px;
+  transition: all var(--transition-duration) var(--transition-timing-function);
 }
 
 .todo-content {
