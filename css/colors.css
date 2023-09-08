@@ -11,6 +11,7 @@
   --text-primary: hsl(225, 25%, 5%);
   --text-secondary: hsl(225, 25%, 25%);
   --hover-bg: hsl(0, 0%, 97%);
+  --click-bg: hsla(225, 15%, 50%, 0.25);
   --scrollbar-bg: hsl(225, 10%, 70%);
   --scrollbar-bg-hover: hsl(225, 15%, 50%);
   --border-color-primary: hsl(225, 20%, 50%);
@@ -24,6 +25,7 @@
   --text-primary: hsl(225, 100%, 97%);
   --text-secondary: hsl(225, 25%, 87%);
   --hover-bg: hsl(225, 10%, 12%);
+  --click-bg: hsla(225, 15%, 50%, 0.25);
   --scrollbar-bg: hsl(225, 10%, 50%);
   --scrollbar-bg-hover: hsl(225, 10%, 65%);
   --border-color-primary: hsl(225, 15%, 50%);

@@ -430,3 +430,13 @@ if (localTheme) {
 themeButton.addEventListener("click", switchTheme);
 
 document.addEventListener("keydown", handleKeydownOnDocument);
+document.addEventListener("click", (e) => {
+  const button = e.target.closest("[data-icon-button]");
+  if (button === null) return;
+  const clickAnimationSpan = document.createElement("span");
+  clickAnimationSpan.classList.add("click-animation-span");
+  button.append(clickAnimationSpan);
+  clickAnimationSpan.addEventListener("animationend", () => {
+    clickAnimationSpan.remove();
+  });
+});
