@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- css -->
-    <link rel="stylesheet" href="css/utility.css" />
+    <link rel="stylesheet" href="css/icon-button.css" />
     <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/lists-box.css" />
@@ -42,7 +42,11 @@
               autocomplete="off"
               data-list-input
             />
-            <button type="submit" class="add-list-button add-button"></button>
+            <button
+              type="submit"
+              data-icon-button
+              class="icon-button add-button"
+            ></button>
           </form>
         </div>
       </div>
@@ -50,12 +54,22 @@
       <div class="todos-box" data-todos-box>
         <div class="list-nav-wrapper">
           <nav class="list-nav">
-            <button class="list-nav-button" data-nav-button>
-              <span></span><span></span><span></span>
+            <button
+              class="icon-button list-nav-button"
+              data-icon-button
+              data-nav-button
+            >
+              <span class="list-nav-button-bar"></span
+              ><span class="list-nav-button-bar"></span
+              ><span class="list-nav-button-bar"></span>
             </button>
             <span class="nav-active-list-span" data-nav-active-list-span></span>
             <div class="theme-button-wrapper" data-theme-button-wrapper>
-              <button class="theme-button" data-theme-button="light">
+              <button
+                class="icon-button theme-button"
+                data-icon-button
+                data-theme-button="light"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="dark-theme-icon"
@@ -94,6 +108,7 @@
               <button
                 class="edit-active-list-button"
                 data-edit-active-list-button
+                style="display: none"
               >
                 <svg
                   class="edit-active-list-icon"
@@ -129,24 +144,6 @@
               Clear Completed Tasks
             </button>
           </div>
-
-          <!-- test -->
-
-          <button class="icon-button" data-icon-button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="32"
-              viewBox="0 -960 960 960"
-              width="32"
-            >
-              <path
-                d="M261-120q-24 0-42-18t-18-42v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm106-146h60v-399h-60v399Zm166 0h60v-399h-60v399Z"
-              />
-            </svg>
-          </button>
-
-          <!-- test -->
-
           <div class="todo-form-wrapper add-form-wrapper">
             <form action="" class="todo-form add-form" data-todo-form>
               <input
@@ -158,7 +155,11 @@
                 autocomplete="off"
                 data-todo-input
               />
-              <button type="submit" class="add-todo-button add-button"></button>
+              <button
+                type="submit"
+                data-icon-button
+                class="icon-button add-button"
+              ></button>
             </form>
           </div>
         </div>
@@ -167,9 +168,18 @@
 
     <template data-todo-template>
       <li class="todo" tabindex="0" data-todo>
-        <!-- button -->
-        <button class="todo-checkbox" data-todo-button="checkbox">
-          <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <button
+          class="todo-checkbox icon-button"
+          data-icon-button
+          data-todo-button="checkbox"
+        >
+          <svg
+            width="32"
+            height="32"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <circle
               cx="16"
               cy="16"
@@ -187,7 +197,6 @@
             />
           </svg>
         </button>
-        <!-- button -->
         <div
           class="todo-content"
           contenteditable="false"
@@ -195,9 +204,13 @@
           autocomplete="off"
         ></div>
         <div class="todo-button-wrapper">
-          <button class="edit-todo-button" data-todo-button="edit">
+          <button
+            class="icon-button edit-todo-button"
+            data-icon-button
+            data-todo-button="edit"
+          >
             <svg
-              class="edit-todo-icon todo-icon"
+              class="edit-todo-icon"
               xmlns="http://www.w3.org/2000/svg"
               height="32"
               viewBox="0 -960 960 960"
@@ -208,7 +221,7 @@
               />
             </svg>
             <svg
-              class="save-todo-icon todo-icon"
+              class="save-todo-icon"
               xmlns="http://www.w3.org/2000/svg"
               height="32"
               viewBox="0 -960 960 960"
@@ -219,9 +232,13 @@
               />
             </svg>
           </button>
-          <button class="delete-todo-button" data-todo-button="delete">
+          <button
+            class="icon-button delete-todo-button"
+            data-icon-button
+            data-todo-button="delete"
+          >
             <svg
-              class="delete-todo-icon todo-icon"
+              class="delete-todo-icon"
               xmlns="http://www.w3.org/2000/svg"
               height="32"
               viewBox="0 -960 960 960"

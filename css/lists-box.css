@@ -63,6 +63,7 @@
   outline: transparent;
   border: var(--list-border-width) solid transparent;
   /* background-clip: padding-box; */
+  -webkit-tap-highlight-color: transparent;
   transition: margin var(--transition-duration) ease;
 }
 

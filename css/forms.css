@@ -5,6 +5,7 @@
 .add-form {
   width: 100%;
   display: flex;
+  align-items: center;
   border: 2px solid var(--border-color-primary);
   border-radius: var(--radius-primary);
   overflow: hidden;
@@ -32,23 +33,15 @@
 }
 
 .add-button {
-  flex-shrink: 0;
-  width: calc(2.5em + 2px);
-  height: calc(2.5em + 2px);
-  border: 1px solid transparent;
-  border-left-color: transparent;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: var(--radius-primary);
+  --size: calc(2rem + 4px);
+  border-radius: calc(var(--radius-primary) / 2);
+  margin: 2px;
 }
 
 .add-button::before,
 .add-button::after {
   content: "";
-  width: 40%;
+  width: 50%;
   height: 2px;
   background-color: var(--border-color-primary);
   position: absolute;
@@ -65,7 +58,6 @@
 
 .add-button:focus-visible::before,
 .add-button:focus-visible::after {
-  width: 50%;
   background-color: var(--accent-color);
 }
 
@@ -87,6 +79,5 @@
 
 .todo-form {
   width: var(--max-width);
-  display: flex;
   background-color: var(--bg-primary);
 }

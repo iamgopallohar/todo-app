@@ -33,32 +33,8 @@
   }
 }
 
-.todo-button-wrapper button,
-.todo-checkbox {
-  background-color: transparent;
-  outline: transparent;
-  font-size: inherit;
-  font-family: inherit;
-  color: inherit;
-  border: 2px solid transparent;
-  border-radius: var(--radius-primary);
-}
-
 .todo-checkbox {
   --size: var(--button-size);
-  width: var(--size);
-  height: var(--size);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.todo-checkbox svg {
-  stroke: var(--text-secondary);
-  stroke-linecap: round;
 }
 
 .todo-checkbox .todo-checkbox-tick {
@@ -145,37 +121,14 @@
 .edit-todo-button,
 .delete-todo-button {
   --size: var(--button-size);
-  width: var(--size);
-  height: var(--size);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.todo-checkbox:focus-visible,
-.edit-todo-button:focus-visible,
-.delete-todo-button:focus-visible {
-  border-color: var(--accent-color);
-}
-
-.todo-icon {
+.edit-todo-button svg,
+.delete-todo-button svg {
   --size: 80%;
-  fill: var(--text-secondary);
-  width: var(--size);
-  height: var(--size);
 }
 
 .todo-content[contenteditable="true"] + .todo-button-wrapper .edit-todo-icon,
 .todo-content[contenteditable="false"] + .todo-button-wrapper .save-todo-icon {
   display: none;
-}
-
-.todo-checkbox:hover svg {
-  stroke: var(--text-primary);
-}
-
-.edit-todo-button:hover .todo-icon,
-.delete-todo-button:hover .todo-icon {
-  fill: var(--text-primary);
 }

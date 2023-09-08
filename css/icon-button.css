@@ -16,15 +16,15 @@
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
+  flex-shrink: 0;
   -webkit-tap-highlight-color: transparent;
   transition: background-color var(--transition-duration) ease;
 }
 
 .icon-button svg {
+  --size: 100%;
   fill: var(--text-secondary);
-  /* stroke: var(--text-secondary);
-  stroke-linecap: round; */
-  --size: 75%;
+  stroke: var(--text-secondary);
   width: var(--size);
   height: var(--size);
 }
@@ -35,6 +35,7 @@
 
 .icon-button:hover svg {
   fill: var(--text-primary);
+  stroke: var(--text-primary);
   position: absolute;
 }
 
@@ -50,7 +51,7 @@
 }
 
 @keyframes click-animation {
-  40% {
+  25% {
     width: 100%;
     height: 100%;
   }
